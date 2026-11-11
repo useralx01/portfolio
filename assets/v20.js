@@ -4,7 +4,7 @@
   const $ = s => document.querySelector(s);
   // 4K footage for big screens, a 1440p copy (still sharp, ~40% smaller) for phones and small windows
   if (screen.width * (devicePixelRatio || 1) < 2000)
-    document.querySelectorAll('video[src*="licht-views-loop.mp4"]').forEach(v => { v.src = v.getAttribute('src').replace('licht-views-loop.mp4', 'licht-views-loop-1440.mp4'); });
+    document.querySelectorAll('video[src*="-loop.mp4"]').forEach(v => { v.src = v.getAttribute('src').replace('-loop.mp4', '-loop-1440.mp4'); });
   const main = $('main'), film = $('.film'), nav = $('.lnav'), hl = $('#highlights');
   if (!main || !film) return;
   const dz = document.createElement('div'); dz.className = 'dz'; dz.setAttribute('aria-hidden', 'true'); main.prepend(dz);
