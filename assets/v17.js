@@ -4,28 +4,6 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, el = document) => el.querySelector(s), $$ = (s, el = document) => [...el.querySelectorAll(s)];
 
-  /* ---------- Intro ---------- */
-  if (root.classList.contains('intro')) {
-    const stage = $('.intro-stage'), t = [];
-    let done = false;
-    const finish = () => {
-      if (done) return; done = true;
-      t.forEach(clearTimeout);
-      stage.classList.add('leave', 's1', 's2');
-      root.classList.remove('intro');
-      try { sessionStorage.setItem('v17-intro', '1'); } catch {}
-      setTimeout(() => $$('.hero .fu').forEach(n => n.classList.add('in')), 350);
-      setTimeout(() => { stage.style.display = 'none'; }, 1100);
-      ['wheel', 'keydown', 'pointerdown', 'touchstart'].forEach(e => removeEventListener(e, skip));
-    };
-    const skip = e => { if (e.type === 'wheel') e.preventDefault(); finish(); };
-    addEventListener('wheel', skip, { passive: false });
-    ['keydown', 'pointerdown', 'touchstart'].forEach(e => addEventListener(e, skip, { passive: true }));
-    requestAnimationFrame(() => requestAnimationFrame(() => stage.classList.add('s1')));
-    t.push(setTimeout(() => stage.classList.add('s2'), 650));
-    t.push(setTimeout(finish, 2000));
-  }
-
   /* ---------- Reveals ---------- */
   if (!reduced && 'IntersectionObserver' in window) {
     root.classList.add('fu-on');

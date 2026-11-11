@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://useralx01.github.io/portfolio/sitemap.xml
