@@ -13,7 +13,7 @@
   const S = { ctx: null, buf: {}, on: store.get('v19-sound') !== 'off' };
   const files = { swoosh: 'swoosh', press: 'press' };
   const raw = {};
-  Object.entries(files).forEach(([k, f]) => { raw[k] = fetch(base + 'media/sfx/' + f + '.mp3?v=2').then(r => r.arrayBuffer()).catch(() => null); });
+  Object.entries(files).forEach(([k, f]) => { raw[k] = fetch(base + 'media/sfx/' + f + '.mp3?v=3').then(r => r.arrayBuffer()).catch(() => null); });
   const unlock = () => {
     if (S.ctx) return S.ctx.resume?.();
     const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
