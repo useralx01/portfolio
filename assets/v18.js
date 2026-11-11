@@ -8,33 +8,8 @@
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const showHero = () => $$('.hero .fu').forEach(n => n.classList.add('in'));
 
-  /* ---------- 1. Intro: black screen, what I build word by word, count to 100, screen opens ---------- */
-  const stage = $('.intro-stage');
-  if (root.classList.contains('intro')) {
-    const words = $$('.ix-words span'), fin = $('.ix-final span'), count = $('.ix-count b'), bar = $('.ix-bar');
-    const t = [], T0 = performance.now(), TOTAL = 3000;
-    let done = false, raf = 0;
-    const tick = now => { const p = Math.min(1, (now - T0) / TOTAL); count.textContent = String(Math.round(p * 100)).padStart(2, '0'); bar.style.setProperty('--p', p.toFixed(3)); if (p < 1 && !done) raf = requestAnimationFrame(tick); };
-    raf = requestAnimationFrame(tick);
-    const show = i => words.forEach((w, k) => { w.classList.toggle('on', k === i); w.classList.toggle('off', k < i); });
-    const finish = quick => {
-      if (done) return; done = true;
-      t.forEach(clearTimeout); cancelAnimationFrame(raf);
-      count.textContent = '100'; bar.style.setProperty('--p', 1);
-      stage.classList.add('open');
-      root.classList.remove('intro');
-      try { sessionStorage.setItem('v18-intro', '1'); } catch {}
-      setTimeout(showHero, quick ? 150 : 380);
-      setTimeout(() => { stage.style.display = 'none'; }, 1200);
-      ['wheel', 'keydown', 'pointerdown', 'touchstart'].forEach(e => removeEventListener(e, skip));
-    };
-    const skip = e => { if (e.type === 'wheel') e.preventDefault(); finish(true); };
-    addEventListener('wheel', skip, { passive: false });
-    ['keydown', 'pointerdown', 'touchstart'].forEach(e => addEventListener(e, skip, { passive: true }));
-    [0, 1, 2, 3].forEach(i => t.push(setTimeout(() => show(i), 150 + i * 520)));
-    t.push(setTimeout(() => { show(4); fin.classList.add('on'); }, 150 + 4 * 520));
-    t.push(setTimeout(() => finish(false), TOTAL + 150));
-  } else if (stage) stage.remove();
+  /* ---------- 1. Intro: moved to v19.js ---------- */
+  const stage = null;
 
   /* ---------- 2. Copy buttons ---------- */
   $$('[data-copy]').forEach(b => b.addEventListener('click', async () => {

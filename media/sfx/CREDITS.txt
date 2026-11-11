@@ -1,0 +1,4 @@
+Sounds on this site (all CC0, credit optional, given anyway):
+swoosh.mp3  "woosh" by florianreichelt, https://freesound.org/people/florianreichelt/sounds/683096/
+press.mp3   click_001, Kenney Interface Sounds, https://kenney.nl/assets/interface-sounds
+Trimmed, made mono and levelled; nothing synthesised.

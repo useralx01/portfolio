@@ -1,0 +1,92 @@
+/* Portfolio v19 on top of v17 + v18: "less but more". One motion system, no shine:
+   intro = the screen switches on (light point -> line -> opens), words rise out of masks,
+   a reading light on one paragraph, odometer numbers, a scroll hairline, the name set big at the end. */
+:root{--rise:1.15s;--ease-rise:cubic-bezier(.16,1,.3,1);--ease-travel:cubic-bezier(.76,0,.24,1)}
+
+/* ---------- Intro: the screen switches on ----------
+   A point of light wakes up in the middle, stretches into a line, and the screen opens from that line. */
+.iv{display:none}
+.intro .iv,.iv.go{display:block;position:fixed;inset:0;z-index:90;pointer-events:auto}
+.iv.go{pointer-events:none}
+.iv-h{position:absolute;left:0;right:0;height:50.5%;background:#050506;transition:transform .9s var(--ease-travel)}
+.iv-t{top:0}.iv-b{bottom:0}
+.iv-dot{position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:8px;background:#fff;
+  box-shadow:0 0 18px 4px rgba(255,255,255,.55),0 0 60px 14px rgba(160,190,255,.22);
+  transform:scale(0);opacity:0;transition:transform .7s var(--ease-rise),opacity .5s linear,width .5s var(--ease-travel),margin .5s var(--ease-travel),height .5s var(--ease-travel)}
+.iv.wake .iv-dot{transform:scale(1);opacity:1}
+.iv.line .iv-dot{width:100vw;margin-left:-50vw;height:2px;margin-top:-1px}
+.iv.go .iv-t{transform:translateY(-101%)}
+.iv.go .iv-b{transform:translateY(101%)}
+.iv.go .iv-dot{width:100vw;margin-left:-50vw;height:2px;margin-top:-1px;transform:scaleY(1);opacity:0;transition:opacity .45s linear .1s}
+.intro body{overflow:hidden}
+.intro main,.iv.go~main{transform-origin:50% 40vh}
+html.opening main{animation:ivSettle 1.1s var(--ease-rise) both}
+@keyframes ivSettle{from{transform:scale(1.035);filter:brightness(1.25)}to{transform:none;filter:none}}
+
+/* ---------- Words rise out of masks (headings, hero) ---------- */
+.fu-on .sp.fu{opacity:1;transform:none;transition:none}
+.sp .wd{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .1em;margin:0 -.02em -.1em}
+.sp .wd>i{display:inline-block;font-style:normal}
+.fu-on .sp .wd>i{transform:translateY(108%) rotate(4deg);transform-origin:0 100%;transition:transform var(--rise) var(--ease-rise);transition-delay:calc(var(--i,0) * 55ms)}
+.fu-on .sp.in .wd>i{transform:none}
+
+/* ---------- Hero: live clock, softer side ---------- */
+.clk{color:var(--faint);font-weight:400;font-variant-numeric:tabular-nums}
+.clk::before{content:'·';margin:0 8px 0 2px;color:var(--line)}
+.hero h1{letter-spacing:-.035em}
+.fu-on .hero .hero-side.fu{transition-delay:.45s}
+
+/* ---------- Scroll hairline under the nav ---------- */
+.lnav{position:sticky}
+.lnav::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink);transform-origin:0 0;transform:scaleX(var(--sp,0));opacity:.55}
+
+/* ---------- Reading light: words brighten as you scroll past ---------- */
+.lit .lw{transition:color .25s linear}
+.lit .lw:not(.on){color:#c7c7cc}
+.lit b .lw:not(.on){color:#b9b9be}
+
+/* ---------- Odometer numbers ---------- */
+.odo{display:inline-flex;vertical-align:top;height:1.3em;line-height:1.3em;margin:-.15em 0;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(transparent,#000 22%,#000 78%,transparent)}
+.odo .oc{display:block;height:1.3em;overflow:hidden}
+.odo .or{display:flex;flex-direction:column;transition:transform 1.9s cubic-bezier(.12,.9,.18,1);transition-delay:calc(var(--i,0) * 90ms)}
+.odo .or span{display:block;height:1.3em;line-height:1.3em}
+.s-v b{display:inline-flex}
+
+/* ---------- Closer look: the picture opens instead of just fading ---------- */
+@keyframes clOpen{from{clip-path:inset(7% 7% 7% 7% round 22px);transform:scale(1.06)}to{clip-path:inset(0 0 0 0 round 0);transform:none}}
+.fu-on .cl-p.on .cl-img img{animation:clOpen 1s var(--ease-rise) both}
+
+@media (max-width:734px){
+  .hero .eyebrow{flex-wrap:wrap;row-gap:2px}
+  .clk{flex-basis:100%;padding-left:18px;font-size:15px}
+  .clk::before{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .odo .or,.fu-on .sp .wd>i{transition:none}
+  .fu-on .cl-p.on .cl-img img{animation:none}
+}
+
+/* ---------- Sound toggle in the nav ---------- */
+.snd{display:inline-grid;place-items:center;width:28px;height:28px;margin-right:-6px;border-radius:50%;color:var(--ink);opacity:.75}
+.snd:hover{opacity:1}
+.snd:active{transform:scale(.92)}
+.snd svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.snd .w1,.snd .w2{transition:opacity .25s}
+.snd[aria-pressed="false"] .w1,.snd[aria-pressed="false"] .w2{opacity:0}
+.snd .x{opacity:0;transition:opacity .25s}
+.snd[aria-pressed="false"] .x{opacity:1}
+
+/* ---------- Scroll scenes (scrubbed: tied to the scroll position, like Apple) ---------- */
+.film{position:relative;height:290vh;margin-top:clamp(8px,2vh,24px)}
+.film-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.film-win{position:absolute;inset:0;background:#0a0a0b;clip-path:inset(var(--it,8vh) var(--ix,8vw) var(--ib,30vh) var(--ix,8vw) round var(--ir,28px));will-change:clip-path}
+.film-win video{width:100%;height:100%;object-fit:cover;transform:scale(var(--vs,1.12));will-change:transform}
+.film-shade{position:absolute;inset:0;background:#000;opacity:var(--sh,0)}
+.film-t{position:absolute;left:var(--g);right:var(--g);top:50%;transform:translateY(calc(-50% + var(--ty,40px)));opacity:var(--to,0);text-align:center;color:#f5f5f7;font-size:clamp(40px,6.4vw,92px);line-height:1.04;font-weight:600;letter-spacing:-.035em;pointer-events:none}
+.film-t span{display:block}
+.film-t span+span{color:#86868b}
+.hl-track{transform-origin:50% 0;transform:scale(var(--hs,1))}
+#highlights .hl-head{transform:translateY(var(--hy,0))}
+.big .h-big{transform:scale(var(--bs,1));transform-origin:50% 60%;will-change:transform}
+.night{border-radius:calc(var(--c,0) * 50%) calc(var(--c,0) * 50%) 0 0 / calc(var(--c,0) * 180px) calc(var(--c,0) * 180px) 0 0;margin-top:calc(var(--c,0) * -60px);position:relative}
+@media (prefers-reduced-motion:reduce){.film{height:auto}.film-stick{position:relative;height:70vh}.film-win{clip-path:none}.film-t{opacity:1;transform:translateY(-50%)}.film-shade{opacity:.45}}
