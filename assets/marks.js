@@ -52,7 +52,7 @@ function start() {
     const it = { el, kind, canvas, ctx, scene, cam, obj, holder, roll, baseX, baseY, P, on: false, w: 0, h: 0,
       gx: 0, gy: 0, x: 0, y: 0, hover: 0, hoverGoal: 0, phase: Math.random() * 6,
       // Opening: logos in the top row turn in from edge-on, one after another.
-      intro: el.closest('.lineup') && scrollY < 40 && !reduced ? [...el.closest('.lineup').children].indexOf(el.closest('li')) * 0.14 : -1 };
+      intro: el.closest('.intro-marks') ? [...el.parentNode.children].indexOf(el) * 0.64 : -1 };
     const host = el.closest('a, .pj') || el;
     host.addEventListener('pointermove', e => {
       if (e.pointerType !== 'mouse') return;
@@ -67,7 +67,8 @@ function start() {
 
   const size = it => {
     const r = it.el.getBoundingClientRect();
-    const dpr = Math.min(devicePixelRatio || 1, 2);
+    // Row logos get extra pixels: the intro shows them larger in the middle of the screen.
+    const dpr = Math.min(Math.max(devicePixelRatio || 1, it.el.closest('.intro-marks') ? 1.5 : 1), 2);
     it.w = Math.max(1, Math.round(r.width * dpr)); it.h = Math.max(1, Math.round(r.height * dpr));
     if (it.canvas.width !== it.w || it.canvas.height !== it.h) { it.canvas.width = it.w; it.canvas.height = it.h; }
     it.cam.aspect = it.w / it.h;

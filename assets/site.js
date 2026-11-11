@@ -45,7 +45,9 @@
     const dest = document.getElementById(a.hash.slice(1));
     if (!dest) return;
     e.preventDefault();
-    const y = scrollY + dest.getBoundingClientRect().top - (dest.id === 'contact' ? 0 : 24);
+    let y = scrollY + dest.getBoundingClientRect().top - (dest.id === 'contact' ? 0 : 24);
+    // Pinned product scenes: land where the product is shown full size.
+    if (root.classList.contains('sc-on') && dest.hasAttribute('data-scene')) y = scrollY + dest.getBoundingClientRect().top + dest.offsetHeight * 0.46 - innerHeight;
     if (smooth) smooth.go(y); else scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
   });
 
