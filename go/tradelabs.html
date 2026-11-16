@@ -1,0 +1,4 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>TradeLabs demo</title>
+<style>body{margin:0;font:17px/1.5 Inter,system-ui,sans-serif;background:#f5f5f7;color:#1d1d1f;display:grid;place-items:center;min-height:100vh;text-align:center;padding:0 20px}</style></head>
+<body><p id="m">Opening the TradeLabs demo…</p>
+<script>fetch('tradelabs.txt?'+Date.now()).then(r=>r.text()).then(u=>{u=u.trim();if(/^https:\/\/[a-z0-9-]+\.trycloudflare\.com$/.test(u))location.replace(u);else throw 0}).catch(()=>{document.getElementById('m').textContent='The demo is offline right now. Please try again later.'})</script></body></html>

@@ -20,3 +20,41 @@
 .site-wide{grid-column:1/-1}
 .site-wide .site-v{aspect-ratio:16/9;background:#f5f5f7}
 @media (max-width:760px){.site-wide .site-v{aspect-ratio:16/10}}
+/* laptop + phone mockups in the project panels (real Apple frames, picture already on the page grey) */
+.cl-img.mock{padding:0}
+.cl-img.mock img{object-fit:cover;object-position:center;border-radius:0;box-shadow:none}
+.cl-p .more+.more{margin-left:18px}
+/* tap areas over the mockup: the phone sits in front of the Mac */
+.cl-img.mock{position:relative}
+.dv-hit{position:absolute;border:0;background:transparent;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .16s var(--ease)}
+.dv-hit.mac{left:19.6%;top:7.3%;width:75.8%;height:79.9%}
+.dv-hit.phone{left:8.7%;top:16.6%;width:23.4%;height:76.4%;border-radius:12%/6%;z-index:1}
+.dv-hit:active{transform:scale(.985)}
+.dv-hit:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+/* the device viewer */
+.dv-on,.dv-on body{overflow:hidden}
+.dv{position:fixed;inset:0;z-index:200;background:#f5f5f7;display:flex;flex-direction:column;animation:dvIn .28s var(--ease) both}
+.dv[hidden]{display:none}
+@keyframes dvIn{from{opacity:0}to{opacity:1}}
+.dv-top{display:flex;align-items:center;gap:16px;padding:14px clamp(16px,3vw,32px);border-bottom:1px solid rgba(0,0,0,.08)}
+.dv-tabs{display:flex;gap:4px;padding:3px;background:rgba(0,0,0,.06);border-radius:999px}
+.dv-tabs button{border:0;background:transparent;font:500 14px/1 inherit;font-family:inherit;color:#1d1d1f;padding:8px 16px;border-radius:999px;cursor:pointer}
+.dv-tabs button[aria-selected=true]{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.dv-tabs button:active{transform:scale(.97)}
+.dv-new{margin-left:auto;font-size:14px;color:var(--blue)}
+.dv-new:not([href]){visibility:hidden}
+.dv-x{width:36px;height:36px;border:0;border-radius:50%;background:rgba(0,0,0,.06);display:grid;place-items:center;cursor:pointer}
+.dv-x:active{transform:scale(.94)}
+.dv-x svg{width:16px;height:16px;stroke:#1d1d1f;stroke-width:2;fill:none;stroke-linecap:round}
+.dv-stage{flex:1;min-height:0;display:grid;place-items:center;padding:12px 0}
+.dv-dev{position:relative;filter:drop-shadow(0 30px 40px rgba(20,22,30,.18));animation:dvDev .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes dvDev{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.dv-frame{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.dv-scr{position:absolute;overflow:hidden;background:#fff;z-index:1}
+.dv[data-dev=mac] .dv-scr{background:#000}
+.dv-scr iframe{position:absolute;left:0;border:0;transform-origin:0 0;background:#fff;opacity:0;transition:opacity .3s}
+.dv.ready .dv-scr iframe{opacity:1}
+.dv-note{position:absolute;inset:0;display:grid;place-items:center;margin:0;font-size:14px;color:#86868b;text-align:center;padding:0 12%}
+.dv.ready .dv-note{display:none}
+@media (prefers-reduced-motion:reduce){.dv,.dv-dev{animation:none}}
+@media (max-width:760px){.dv-new{font-size:13px}.dv-tabs button{padding:8px 13px}}
