@@ -1,0 +1,13 @@
+/* Navy start with white buttons (Licht 2026-11-16) */
+:root{--k:#0a1328;--k-mute:#a3aec4;--k-line:rgba(255,255,255,.12);--blue:#0a1328;--blue-h:#0a1328;--link:#1a2a4d}
+.lnav.dk{background:rgba(10,19,40,.72)}
+.pill,.film-try,.times button[aria-checked=true]{background:#fff;color:#0a1328;font-weight:500}
+.pill:hover{background:#fff}
+.pill{box-shadow:inset 0 0 0 1px rgba(10,19,40,.28)}
+.lnav.dk .pill,.hero .pill,.night .pill{box-shadow:none}
+.night{background:#0a1328}
+.ghost-night{border-color:#fff;color:#fff}
+.ghost-night:hover{background:#fff;color:#0a1328}
+.copy,.ct-row a:hover{color:#fff}
+.ghost:hover{background:#0a1328;color:#fff}
+.film-stick::before{background:radial-gradient(closest-side,rgba(255,255,255,.08),rgba(255,255,255,.03) 55%,transparent)}
