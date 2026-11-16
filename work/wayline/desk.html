@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=1512">
+<link rel="icon" href="data:,">
+<title>Wayline for Mac</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="pass.css">
+<link rel="stylesheet" href="days.css">
+<link rel="stylesheet" href="desk.css">
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/" } }
+</script>
+</head>
+<body class="desk" data-tab="trip">
+
+<div class="menubar">
+  <span class="mb-app">Wayline</span><span>File</span><span>Edit</span><span>View</span><span>Window</span>
+  <span class="mb-right">Thu 3 Dec&nbsp;&nbsp;9:41</span>
+</div>
+
+<div class="scroller" id="scroller">
+
+  <header class="topnav">
+    <span class="brand">Wayline</span>
+    <nav>
+      <a href="#trip" class="on">Trip</a>
+      <a href="#pass">Pass</a>
+      <a href="#days">Days</a>
+    </nav>
+    <span class="me">AL</span>
+  </header>
+
+  <section class="d-hero" id="trip">
+    <div class="globe" id="globe">
+      <span class="glabel" id="lb-ber">Berlin</span>
+      <span class="glabel" id="lb-hnd">Tokyo</span>
+    </div>
+    <div class="trip-info">
+      <div class="ti-head">
+        <div>
+          <h1 class="city">Tokyo</h1>
+          <p class="when">Thu 3 – Mon 14 Dec</p>
+        </div>
+        <div class="count"><span class="n">12</span><span class="u">days to go</span></div>
+      </div>
+      <div class="flight">
+        <div class="leg"><span class="tm">07:40</span><span class="ap">BER · Berlin</span></div>
+        <div class="mid"><span class="dur">11h 50m</span><span class="track"><i></i><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12 L14.5 10.4 L11.2 3.6 L9.4 3.6 L11 10.4 L6.2 10.4 L4.4 7.4 L3 7.4 L4 10.4 L4 13.6 L3 16.6 L4.4 16.6 L6.2 13.6 L11 13.6 L9.4 20.4 L11.2 20.4 L14.5 13.6 Z"/></svg><i></i></span><span class="dur">Nonstop</span></div>
+        <div class="leg r"><span class="tm">08:30<sup>+1</sup></span><span class="ap">HND · Tokyo</span></div>
+      </div>
+      <dl class="facts">
+        <div><dt>Terminal</dt><dd>1</dd></div>
+        <div><dt>Gate</dt><dd>B12</dd></div>
+        <div><dt>Seat</dt><dd>14A</dd></div>
+        <div><dt>Boards</dt><dd>07:05</dd></div>
+      </dl>
+      <a class="pill" href="#pass">Boarding pass</a>
+    </div>
+  </section>
+
+  <section class="d-row" id="pass">
+    <div class="d-copy">
+      <h2>Your pass,<br>ready at the gate.</h2>
+      <p>Tap the pass to flip it to the code. It works offline, so the gate never waits on wifi.</p>
+      <dl class="d-list">
+        <div><dt>Check-in</dt><dd>Done</dd></div>
+        <div><dt>Bags</dt><dd>1 × 23 kg</dd></div>
+        <div><dt>Lounge</dt><dd>Level 3, gate B</dd></div>
+      </dl>
+    </div>
+    <section class="d-device" id="screen-pass"></section>
+  </section>
+
+  <section class="d-row" id="days">
+    <div class="d-copy">
+      <h2>Twelve days,<br>every stop planned.</h2>
+      <p>Pick a day and see the walk on the map, in the order you'll do it.</p>
+      <dl class="d-list">
+        <div><dt>Hotel</dt><dd>Otemachi, 4 nights</dd></div>
+        <div><dt>Then</dt><dd>Shibuya, 7 nights</dd></div>
+        <div><dt>Rail pass</dt><dd>Starts Fri 4</dd></div>
+      </dl>
+    </div>
+    <section class="d-device tall" id="screen-days"></section>
+  </section>
+
+  <footer class="d-foot"><span class="brand">Wayline</span><span>Concept app</span></footer>
+</div>
+
+<script type="module" src="app.js"></script>
+<script defer src="pass.js"></script>
+<script defer src="days.js"></script>
+<script defer src="desk.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+:root {
+  --bg: #e8e5dd;
+  --ink: #16161a;
+  --muted: #6d6a63;
+  --e-arrive: cubic-bezier(0.16, 1, 0.3, 1);
+  --e-travel: cubic-bezier(0.65, 0, 0.35, 1);
+  --e-ui: cubic-bezier(0.25, 1, 0.5, 1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0; height: 100%; overflow: hidden; scrollbar-width: none;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased; color: var(--ink);
+  background:
+    radial-gradient(70% 60% at 55% 42%, #f3f1eb 0%, rgba(243,241,235,0) 70%),
+    linear-gradient(#e9e6de, #dedad0);
+}
+::-webkit-scrollbar { display: none; }
+
+/* ---------- words ---------- */
+.mark { position: fixed; left: 5.5vw; top: 6vh; z-index: 5; transition: opacity .5s var(--e-ui); }
+.mark h1 { margin: 0; font-size: clamp(34px, 3.4vw, 56px); font-weight: 700; letter-spacing: -0.05em; line-height: .95; }
+.mark p { margin: 14px 0 0; font-size: 15px; line-height: 1.45; color: var(--muted); letter-spacing: -0.01em; }
+.credit { position: fixed; left: 5.5vw; bottom: 4.5vh; margin: 0; font-size: 12.5px; color: var(--muted); transition: opacity .5s var(--e-ui); }
+body.focus .mark, body.focus .credit { opacity: 0; pointer-events: none; }
+
+/* ---------- the two devices ---------- */
+.scene { position: fixed; inset: 0; perspective: 2600px; perspective-origin: 50% 40%; transform-style: flat; }
+.dev {
+  all: unset; position: absolute; display: block; cursor: pointer;
+  transform-origin: 50% 50%;
+  transition: transform .9s var(--e-travel), opacity .5s var(--e-ui);
+  -webkit-tap-highlight-color: transparent;
+}
+.dev:focus-visible { outline: 2px solid var(--ink); outline-offset: 10px; }
+.dev .bz { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; user-select: none; z-index: 2; }
+.dev .scr { position: absolute; z-index: 1; overflow: hidden; background: #07080c; }
+.dev iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; pointer-events: none; background: #07080c; }
+.dev.live iframe { pointer-events: auto; }
+.dev.live { cursor: default; }
+
+/* MacBook Pro 14 bezel 3860x2540, screen 418,288 to 3441,2251 (3024x1964 = 1512x982 pt) */
+.mac .scr { left: 10.829%; top: 11.339%; width: 78.316%; height: 77.323%; border-radius: .6% .6% 0 0 / .9% .9% 0 0; }
+.mac iframe { width: 1512px; height: 982px; }
+/* iPhone 17 Pro bezel 1350x2760, screen 72,69 to 1277,2690 (402x874 pt) */
+.ph .scr { left: 5.0%; top: 2.3%; width: 90%; height: 95.4%; border-radius: 13.5% / 6.4%; }
+.ph iframe { width: 402px; height: 874px; }
+
+/* rest pose: the Mac turned a little away, the phone in front of it turned toward you */
+.mac { z-index: 1; }
+.ph { z-index: 3; }
+.dev:not(.live):active { transition: transform .16s var(--e-ui); }
+
+/* floor shadows under the floating devices */
+.floor { position: absolute; z-index: 0; border-radius: 50%; pointer-events: none; filter: blur(22px); background: radial-gradient(closest-side, rgba(40,34,24,.34), rgba(40,34,24,0)); transition: opacity .5s var(--e-ui); }
+body.focus .floor { opacity: 0; }
+
+/* focus */
+body.focus .dev:not(.live) { opacity: 0; pointer-events: none; }
+.dev.live { z-index: 10; }
+
+.back {
+  all: unset; position: fixed; top: 24px; right: 24px; z-index: 20; width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer; background: rgba(22,22,26,.9); color: #fff;
+  opacity: 0; pointer-events: none; transform: scale(.9);
+  transition: opacity .28s var(--e-ui), transform .28s var(--e-ui);
+}
+.back svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.back:active { transform: scale(.94); }
+.back:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+body.focus .back { opacity: 1; pointer-events: auto; transform: none; }
+.hint { position: fixed; left: 0; right: 0; bottom: 2.2vh; margin: 0; z-index: 20; text-align: center; font-size: 12.5px; color: var(--muted); opacity: 0; transition: opacity .5s var(--e-ui); pointer-events: none; }
+body.focus .hint { opacity: 1; transition-delay: .5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dev, .floor, .mark, .credit, .back, .hint { transition-duration: .01ms !important; }
+}
+.hint .t { display: none; }
+@media (hover: none) { .hint .k { display: none; } .hint .t { display: inline; } }

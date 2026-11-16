@@ -6,6 +6,7 @@
                : { close: 'Close', phone: 'iPhone', mac: 'Mac', open: 'Open in a new tab', load: 'Loading the app…', off: 'The demo is offline right now.' };
   // where each live app is right now (its tunnel address changes, a small text file always has the current one)
   const APPS = {
+    wayline: { name: 'Wayline', page: { phone: base + 'work/wayline/app.html', mac: base + 'work/wayline/desk.html' }, full: true },
     homing: { name: 'Homing', src: 'https://useralx01.github.io/homing/live.txt' },
     tradelabs: { name: 'TradeLabs', src: 'https://useralx01.github.io/homing/tradelabs.txt' },
   };
@@ -15,7 +16,7 @@
     mac: { img: base + 'media/dev/macbook.webp', ratio: 3860 / 2540, hole: [418 / 3860, 288 / 2540, 3024 / 3860, 1964 / 2540], w: 1512, h: 982, top: 34 },
   };
   const url = {};
-  const getUrl = k => url[k] || (url[k] = fetch(APPS[k].src + '?' + Date.now()).then(r => r.ok ? r.text() : '').then(t => {
+  const getUrl = (k, dev) => APPS[k].page ? Promise.resolve(new URL(APPS[k].page[dev], location.href).href) : url[k] || (url[k] = fetch(APPS[k].src + '?' + Date.now()).then(r => r.ok ? r.text() : '').then(t => {
     t = t.trim(); if (!/^https:\/\/[a-z0-9-]+\.trycloudflare\.com$/.test(t)) throw 0; return t;
   }));
 
@@ -44,7 +45,8 @@
     const [hx, hy, hw, hh] = d.hole;
     Object.assign(scr.style, { left: hx * 100 + '%', top: hy * 100 + '%', width: hw * 100 + '%', height: hh * 100 + '%' });
     const s = (w * hw) / d.w;
-    Object.assign(ifr.style, { width: d.w + 'px', height: (d.h - d.top) + 'px', top: d.top * s + 'px', transform: `scale(${s})` });
+    const top = APPS[cur.app].full ? 0 : d.top;
+    Object.assign(ifr.style, { width: d.w + 'px', height: (d.h - top) + 'px', top: top * s + 'px', transform: `scale(${s})` });
   }
   function show(app, dev) {
     cur = { app, dev };
@@ -54,8 +56,8 @@
     box.setAttribute('aria-label', APPS[app].name);
     ifr.title = APPS[app].name; note.textContent = T.load; box.classList.remove('ready');
     fit();
-    getUrl(app).then(u => {
-      if (cur.app !== app) return;
+    getUrl(app, dev).then(u => {
+      if (cur.app !== app || cur.dev !== dev) return;
       newTab.href = u;
       if (ifr.dataset.u !== u) { ifr.dataset.u = u; ifr.onload = () => box.classList.add('ready'); ifr.src = u; } else box.classList.add('ready');
     }).catch(() => { note.textContent = T.off; newTab.removeAttribute('href'); });

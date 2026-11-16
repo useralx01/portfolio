@@ -1,0 +1,64 @@
+/* Wayline: Days screen, scoped to #screen-days */
+#screen-days { overflow: hidden; }
+#screen-days .days-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; }
+
+#screen-days .days-head { padding: 14px 24px 0; }
+#screen-days .days-title { margin: 0; font-size: 34px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+#screen-days .days-sub { margin: 8px 0 0; font-size: 15px; color: var(--muted); letter-spacing: -0.01em; }
+
+#screen-days .days-strip {
+  display: flex; gap: 4px; margin-top: 22px; padding: 0 20px 16px; overflow-x: auto; scrollbar-width: none;
+  border-bottom: 1px solid var(--line); flex: none;
+}
+#screen-days .days-strip::-webkit-scrollbar { display: none; }
+#screen-days .day { flex: none; width: 46px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+#screen-days .day .wd { font-size: 11.5px; color: var(--muted); font-weight: 500; }
+#screen-days .day .num {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+  transition: background var(--d-ui) var(--e-ui), color var(--d-ui) var(--e-ui);
+}
+#screen-days .day[aria-pressed="true"] .num { background: #f5f5f7; color: #07080c; }
+#screen-days .day[aria-pressed="true"] .wd { color: var(--ink); }
+
+#screen-days .days-body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+#screen-days .days-summary { margin: 0; padding: 16px 24px 4px; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+#screen-days .days-scroll { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 0 0 24px; }
+#screen-days .days-scroll::-webkit-scrollbar { display: none; }
+
+#screen-days .tl { list-style: none; margin: 0; padding: 0 24px; position: relative; }
+#screen-days .tl::before {
+  content: ""; position: absolute; left: 32.5px; top: 30px; bottom: 30px; width: 1px;
+  background: linear-gradient(to bottom, var(--accent), rgba(111,168,255,.15));
+}
+#screen-days .tl-item {
+  position: relative; width: 100%; text-align: left;
+  display: grid; grid-template-columns: 18px 48px 1fr auto; gap: 0 12px; align-items: start; gap: 0 10px;
+  padding: 18px 0 18px; margin-left: 0;
+}
+#screen-days .tl-li + .tl-li .tl-item::before { content: ""; position: absolute; left: 32px; right: 0; top: 0; height: 1px; background: var(--line); }
+#screen-days .dot {
+  width: 18px; height: 18px; margin-top: 0; border-radius: 50%; background: var(--bg);
+  border: 1.5px solid rgba(111,168,255,.75); position: relative; z-index: 1;
+  display: grid; place-items: center; font-size: 10px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums;
+}
+#screen-days .is-next .dot { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 5px rgba(111,168,255,.16); color: #07080c; }
+#screen-days .time { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 2px; }
+#screen-days .txt { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+#screen-days .name { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+#screen-days .line { font-size: 14px; color: var(--muted); line-height: 1.35; }
+#screen-days .area { font-size: 12px; color: var(--muted); padding-top: 3px; white-space: nowrap; }
+#screen-days .tl-item:active { transform: scale(.985); }
+
+#screen-days .days-map { margin: 6px 24px 4px; height: 210px; flex: none; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+#screen-days .days-map svg { display: block; width: 100%; height: 100%; overflow: visible; }
+#screen-days .days-map .g { fill: rgba(255,255,255,.07); }
+#screen-days .days-map .river { fill: none; stroke: rgba(111,168,255,.13); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+#screen-days .days-map .dl { font-size: 7.5px; fill: rgba(255,255,255,.22); font-weight: 500; letter-spacing: .02em; }
+#screen-days .days-map .route { fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-dasharray: 1; stroke-linecap: round; }
+#screen-days .days-map .stop circle { fill: var(--bg); stroke: var(--accent); stroke-width: 1.5; }
+#screen-days .days-map .stop.first circle { fill: var(--accent); }
+#screen-days .days-map .stop text { font-size: 9px; font-weight: 700; fill: var(--ink); text-anchor: middle; }
+#screen-days .days-map .stop.first text { fill: #07080c; }
+#screen-days .days-map .stop text.an { font-size: 9px; font-weight: 600; fill: rgba(245,245,247,.85); text-anchor: start; }
+#screen-days .days-map .stop.first text.an { fill: rgba(245,245,247,.85); }

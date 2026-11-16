@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wayline</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stage.css">
+</head>
+<body>
+
+<header class="mark">
+  <h1>Wayline</h1>
+  <p>A concept travel app for Mac and iPhone.<br>Click either screen to use it.</p>
+</header>
+
+<main class="scene" id="scene">
+  <span class="floor floor-mac" aria-hidden="true"></span>
+  <span class="floor floor-ph" aria-hidden="true"></span>
+
+  <button class="dev mac" id="mac" type="button" aria-label="Open the Mac app">
+    <span class="scr"><iframe src="desk.html" title="Wayline for Mac" tabindex="-1" loading="eager"></iframe></span>
+    <img class="bz" src="img/mbp14.png" width="3860" height="2540" alt="" draggable="false">
+  </button>
+
+  <button class="dev ph" id="ph" type="button" aria-label="Open the iPhone app">
+    <span class="scr"><iframe src="app.html" title="Wayline for iPhone" tabindex="-1" loading="eager"></iframe></span>
+    <img class="bz" src="img/iphone17pro-silver.png" width="1350" height="2760" alt="" draggable="false">
+  </button>
+</main>
+
+<button class="back" id="back" type="button" aria-label="Back to both devices">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+</button>
+<p class="hint" id="hint"><span class="k">Scroll and click inside. Esc to go back.</span><span class="t">Scroll and tap inside. Tap × to go back.</span></p>
+
+<p class="credit">Concept. Designed and built by Issa.</p>
+
+<script src="stage.js"></script>
+</body>
+</html>
