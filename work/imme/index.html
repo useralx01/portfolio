@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Imme — Raw honey from the Swabian Alb</title>
+<meta name="description" content="A small honey house in Hülben on the Swabian Alb. Raw honey from forty hives, spun once a year, never heated.">
+<meta name="theme-color" content="#1b130c">
+<link rel="preload" href="assets/fonts/fraunces-latin-full-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css?v=41">
+</head>
+<body>
+<header class="nav">
+  <nav class="nav-l" aria-label="Sections">
+    <a href="#honeys">Honeys</a>
+    <a href="#story">Our story</a>
+    <a href="#house">Visit</a>
+  </nav>
+  <a class="brand" href="#top" aria-label="Imme, back to the top">Imme</a>
+  <div class="nav-r">
+    <span class="hours">Sat 9–12 · Hülben</span>
+    <a class="btn-line" href="#order">Order<span class="count" hidden>0</span></a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- one filmed walk: up the path, through the door, into the honey room -->
+  <section class="walk film" data-seq="media/walk6" data-n="241" style="--len:560vh">
+    <div class="pin">
+      <canvas class="seq" aria-hidden="true"></canvas>
+      <div class="shade" aria-hidden="true"></div>
+      <h1 class="say say-a"><span>Raw honey</span> <span>from</span> <span>the</span> <span>Alb.</span></h1>
+      <p class="say say-b" aria-hidden="true"><span>Spun</span> <span>once</span> <span>a</span> <span>year,</span> <span>in</span> <span>this</span> <span>house.</span></p>
+      <div class="say say-c">
+        <p class="big"><em>Imme.</em></p>
+        <p class="small">Forty hives above Hülben. Never heated, never blended.</p>
+        <div class="row"><a class="btn" href="#honeys">Choose your honey</a><a class="btn-line light" href="#house">Visit us</a></div>
+      </div>
+      <p class="cue" aria-hidden="true"><i></i>Scroll</p>
+    </div>
+  </section>
+
+  <!-- the honeys, like a menu: the picture changes with the honey -->
+  <section class="menu" id="honeys">
+    <div class="menu-pic" aria-hidden="true">
+      <img class="on" src="media/world/w5-2k.webp" srcset="media/world/w5-2k.webp 1600w, media/world/w5-4k.webp 3200w" sizes="(max-width:860px) 100vw, 58vw" alt="" loading="lazy">
+      <img src="media/world/w6-2k.webp" srcset="media/world/w6-2k.webp 1600w, media/world/w6-4k.webp 3200w" sizes="(max-width:860px) 100vw, 58vw" alt="" loading="lazy">
+      <img src="media/world/w7-2k.webp" srcset="media/world/w7-2k.webp 1600w, media/world/w7-4k.webp 3200w" sizes="(max-width:860px) 100vw, 58vw" alt="" loading="lazy">
+    </div>
+    <div class="menu-card">
+      <p class="kicker">This summer's honey</p>
+      <h2>Three honeys,<br><em>one summer.</em></h2>
+      <ol class="dishes">
+        <li class="pot on" data-id="bluete" data-i="0">
+          <button class="d-head" type="button" aria-expanded="true"><span class="d-name">Blüte</span><span class="d-note">spring blossom</span><span class="price">€9</span></button>
+          <div class="d-body"><div>
+            <p>Dandelion, apple and cherry blossom. It sets creamy after a few weeks and spreads like butter. Spun 2 June.</p>
+            <button class="add" type="button">Add to order</button>
+          </div></div>
+        </li>
+        <li class="pot" data-id="linde" data-i="1">
+          <button class="d-head" type="button" aria-expanded="false"><span class="d-name">Linde</span><span class="d-note">linden in bloom</span><span class="price">€10</span></button>
+          <div class="d-body"><div>
+            <p>Clear and runny, bright, a little minty. The one for tea. Spun 14 July.</p>
+            <button class="add" type="button">Add to order</button>
+          </div></div>
+        </li>
+        <li class="pot" data-id="wald" data-i="2">
+          <button class="d-head" type="button" aria-expanded="false"><span class="d-name">Wald</span><span class="d-note">fir and spruce</span><span class="price">€12</span></button>
+          <div class="d-body"><div>
+            <p>Dark, malty, barely sweet at the end. Only in years when the firs give it. Spun 21 August.</p>
+            <button class="add" type="button">Add to order</button>
+          </div></div>
+        </li>
+      </ol>
+      <p class="fine">250 g jars. Free delivery in Germany from €30.</p>
+    </div>
+  </section>
+
+  <!-- the story, word by word -->
+  <section class="story" id="story" style="--len:260vh">
+    <div class="pin">
+      <img class="story-bg" src="media/world/w4-2k.webp" srcset="media/world/w4-2k.webp 1600w, media/world/w4-4k.webp 3200w" sizes="100vw" alt="" loading="lazy">
+      <p class="words">We take only what the bees don't need for winter. In a poor year that means less honey, and we sell out early. We would rather do that than <em>feed them sugar.</em></p>
+    </div>
+  </section>
+
+  <!-- the house: the picture closes into a card -->
+  <section class="house" id="house" style="--len:220vh">
+    <div class="pin">
+      <p class="kicker">The honey house</p>
+      <div class="frame">
+        <img src="media/world/w2-2k.webp" srcset="media/world/w2-2k.webp 1600w, media/world/w2-4k.webp 3200w" sizes="100vw" alt="Inside the Imme honey house: oak shelves of honey jars and a long oak table under a warm lamp" loading="lazy">
+        <div class="frame-text">
+          <h2>Taste before<br><em>you take one home.</em></h2>
+          <p>Every Saturday from 9 to 12 the door is open. Try all three honeys at the long table and see the extractor we spin them with.</p>
+          <a class="btn" href="#end">How to find us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="order" id="order">
+    <div class="wrap">
+      <p class="kicker">Order</p>
+      <h2>Your <em>jars.</em></h2>
+      <div class="order-body">
+        <ul class="lines" aria-live="polite"><li class="empty">Nothing yet. Pick a honey above.</li></ul>
+        <form class="send" novalidate>
+          <label for="mail">Email for the order confirmation</label>
+          <div class="field"><input id="mail" type="email" placeholder="you@example.com" autocomplete="email"><button type="submit">Send order</button></div>
+          <p class="msg" role="status"></p>
+          <p class="fine">Paid by invoice when the jars arrive. Delivery across Germany in 2–3 days.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="end" id="end">
+  <img class="end-bg" src="media/world/w8-2k.webp" srcset="media/world/w8-2k.webp 1600w, media/world/w8-4k.webp 3200w" sizes="100vw" alt="Beehives in a meadow at dusk, seen through the back door of the honey house" loading="lazy">
+  <div class="end-text">
+    <p class="big">See you in <em>Hülben.</em></p>
+    <p>Imme honey house · Saturdays 9–12</p>
+  </div>
+  <div class="end-row">
+    <span>Imme, Swabian Alb</span>
+    <span class="concept">A concept site. Brand, place and prices are made up. Images are AI-generated.</span>
+  </div>
+</footer>
+<div class="toast" role="status" aria-live="polite"></div>
+<script src="assets/site.js?v=41" defer></script>
+</body>
+</html>
