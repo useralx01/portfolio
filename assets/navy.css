@@ -11,3 +11,8 @@
 .copy,.ct-row a:hover{color:#fff}
 .ghost:hover{background:#060c1a;color:#fff}
 .film-stick::before{background:radial-gradient(closest-side,rgba(255,255,255,.08),rgba(255,255,255,.03) 55%,transparent)}
+
+/* language switch, shown on phones too */
+.lnav nav a.lang{display:inline-flex!important;align-items:center;min-height:32px;padding:0 4px;font-size:12px;font-weight:500;letter-spacing:.04em;opacity:.88}
+.lnav nav a.lang:hover{color:inherit}
+@media (max-width:600px){.lnav nav{gap:10px}.lnav .pill{white-space:nowrap}.lnav-name{white-space:nowrap;font-size:15px}.lnav .pill{padding:4px 10px}.lnav nav a.lang{padding:0 2px}}
