@@ -58,3 +58,5 @@
 .dv.ready .dv-note{display:none}
 @media (prefers-reduced-motion:reduce){.dv,.dv-dev{animation:none}}
 @media (max-width:760px){.dv-new{font-size:13px}.dv-tabs button{padding:8px 13px}}
+.dv[data-dev=phone] .dv-scr{border-radius:13.4%/6.2%}
+.dv[data-dev=mac] .dv-scr{border-radius:1.4%/2.1% 1.4%/2.1% 0 0}
