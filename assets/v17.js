@@ -19,7 +19,6 @@
   secs.forEach(s => s && sio.observe(s));
 
   /* ---------- Highlights gallery ---------- */
-  if ($('[data-gallery]')) {
   const track = $('[data-gallery]'), slides = $$('[data-slide]', track), dots = $$('.dots button'), hl = $('.hl');
   const DUR = 6500;
   let cur = 0, t0 = 0, paused = reduced, inView = false, raf = 0, lock = 0;
@@ -56,7 +55,6 @@
   new IntersectionObserver(([en]) => { inView = en.isIntersecting; mark(); run(); }, { threshold: 0.4 }).observe(track);
   if (reduced) { hl.classList.add('paused'); }
   mark();
-  }
 
   /* ---------- Take a closer look ---------- */
   const tabs = $$('.cl-list button'), panels = $$('[data-panel]');
