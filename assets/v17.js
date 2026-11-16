@@ -12,7 +12,7 @@
   }
 
   /* ---------- Nav: hairline once scrolled, current section greyed ---------- */
-  const nav = $('.lnav'), links = $$('.lnav nav a:not(.pill)');
+  const nav = $('.lnav'), links = $$('.lnav nav a:not(.pill):not(.lang)');
   addEventListener('scroll', () => nav.classList.toggle('lined', scrollY > 4), { passive: true });
   const secs = links.map(a => $(a.getAttribute('href')));
   const sio = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) links.forEach((a, i) => a.classList.toggle('cur', secs[i] === en.target)); }), { rootMargin: '-45% 0px -50% 0px' });
