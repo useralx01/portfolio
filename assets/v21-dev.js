@@ -7,7 +7,7 @@
   // where each live app is right now (its tunnel address changes, a small text file always has the current one)
   const APPS = {
     homing: { name: 'Homing', src: 'https://useralx01.github.io/homing/live.txt' },
-    tradelabs: { name: 'TradeLabs', src: base + 'go/tradelabs.txt' },
+    tradelabs: { name: 'TradeLabs', src: 'https://useralx01.github.io/homing/tradelabs.txt' },
   };
   // screen hole of each frame (Apple bezel PNGs) and the size the app sees inside it, in CSS pixels
   const DEV = {
