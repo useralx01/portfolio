@@ -1,4 +1,0 @@
-Sounds on this site (all CC0, credit optional, given anyway):
-swoosh.mp3  "woosh" by florianreichelt, https://freesound.org/people/florianreichelt/sounds/683096/
-press.mp3   "UI button click" by benzix2, https://freesound.org/people/benzix2/sounds/467951/
-Trimmed, made mono and levelled; nothing synthesised.
