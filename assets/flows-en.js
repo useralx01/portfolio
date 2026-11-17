@@ -16,7 +16,7 @@ window.SITE_TEXT = (() => {
   };
   const project = {
     type: 'project', title: 'Start a project', subject: a => `Project request from ${a.name || 'a visitor'}`,
-    intro: 'Hi Issa,\n\nhere is my project request from your portfolio.\n',
+    intro: 'Hi Dre,\n\nhere is my project request from your portfolio.\n',
     done: ["Thanks. I'll contact you soon.", 'Your email app opened with all your answers. Press send there so they reach me. I usually reply within two working days with questions, a plan and a price.'],
     doneApi: ["Thanks. I'll contact you soon.", 'Your request reached me, and a copy is on its way to your inbox. I usually reply within two working days with questions, a plan and a price.'],
     steps: [
@@ -53,7 +53,7 @@ window.SITE_TEXT = (() => {
   };
   const review = {
     type: 'review', title: 'Write a review', subject: a => `Review from ${a.name || 'a client'}`,
-    intro: 'Hi Issa,\n\nhere is my review for your portfolio.\n',
+    intro: 'Hi Dre,\n\nhere is my review for your portfolio.\n',
     done: ['Thank you.', 'Your email app opened with your review. Press send there so it reaches me. It appears on the site once I have checked it is from a real project.'],
     doneApi: ['Thank you.', 'Your review reached me. It appears on the site once I have checked it is from a real project.'],
     steps: [
@@ -65,7 +65,7 @@ window.SITE_TEXT = (() => {
   };
   const tester = {
     type: 'tester', title: 'Become a tester', subject: a => `New tester: ${a.name || 'a visitor'}`,
-    intro: 'Hi Issa,\n\nI would like to be a tester.\n',
+    intro: 'Hi Dre,\n\nI would like to be a tester.\n',
     done: ["You're almost on the list.", "Your email app opened with your answers. Press send there, and I'll message you whenever something new is ready to test."],
     doneApi: ['Check your inbox.', "I sent you an email. Click the link in it to confirm, and you're on the list."],
     steps: [
@@ -76,12 +76,12 @@ window.SITE_TEXT = (() => {
       { id: 'time', k: 'About you', sum: 'Time per test', q: 'How much time can you give per test?', ...one([['About 15 minutes'], ['About an hour'], ['A few hours'], ['It depends']], true) },
       { id: 'how', k: 'About you', sum: 'Feedback by', q: 'How do you like to give feedback?', hint: 'Pick everything that fits.', ...many([['Written notes'], ['Screenshots or a screen recording'], ['A short call'], ['Detailed bug reports']], true) },
       { id: 'you', k: 'About you', q: 'Who are you?', type: 'fields', fields: [{ id: 'name', label: 'Your name', sum: 'Name', req: true, ac: 'name' }, { id: 'email', label: 'Email', sum: 'Email', req: true, type: 'email', ac: 'email' }, { id: 'phone', label: 'Phone', sum: 'Phone', ...OPT, type: 'tel', ac: 'tel' }, { id: 'country', label: 'Country', sum: 'Country', ...OPT, ac: 'country-name' }] },
-      { id: 'notify', k: 'About you', sum: 'Tell them by', q: 'How should I tell you about a new test?', ...one([['Email'], ['Text message'], ['WhatsApp']], true), consent: 'I agree to get messages from Issa when something is ready to test. I can stop them any time.' },
+      { id: 'notify', k: 'About you', sum: 'Tell them by', q: 'How should I tell you about a new test?', ...one([['Email'], ['Text message'], ['WhatsApp']], true), consent: 'I agree to get messages from Dre when something is ready to test. I can stop them any time.' },
     ],
   };
   const support = {
     type: 'support', title: 'Get support', subject: a => `Support: ${a.product || 'general'} (${a.name || 'a user'})`,
-    intro: 'Hi Issa,\n\nI need help.\n',
+    intro: 'Hi Dre,\n\nI need help.\n',
     done: ["Thanks. I'll get back to you soon.", 'Your email app opened with your message. Press send there so it reaches me.'],
     doneApi: ["Thanks. I'll get back to you soon.", 'Your message reached me, and a copy is on its way to your inbox.'],
     steps: [

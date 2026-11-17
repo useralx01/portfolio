@@ -16,7 +16,7 @@ window.SITE_TEXT = (() => {
   };
   const project = {
     type: 'project', title: 'Projekt starten', subject: a => `Projektanfrage von ${a.name || 'einem Besucher'}`,
-    intro: 'Hallo Issa,\n\nhier ist meine Projektanfrage von deinem Portfolio.\n',
+    intro: 'Hallo Dre,\n\nhier ist meine Projektanfrage von deinem Portfolio.\n',
     done: ['Danke. Ich melde mich bald.', 'Dein E-Mail-Programm hat sich mit allen Antworten geöffnet. Drück dort auf Senden, damit sie bei mir ankommen. Meist antworte ich innerhalb von zwei Werktagen mit Fragen, einem Plan und einem Preis.'],
     doneApi: ['Danke. Ich melde mich bald.', 'Deine Anfrage ist bei mir angekommen, und eine Kopie ist auf dem Weg in dein Postfach. Meist antworte ich innerhalb von zwei Werktagen mit Fragen, einem Plan und einem Preis.'],
     steps: [
@@ -53,7 +53,7 @@ window.SITE_TEXT = (() => {
   };
   const review = {
     type: 'review', title: 'Bewertung schreiben', subject: a => `Bewertung von ${a.name || 'einem Kunden'}`,
-    intro: 'Hallo Issa,\n\nhier ist meine Bewertung für dein Portfolio.\n',
+    intro: 'Hallo Dre,\n\nhier ist meine Bewertung für dein Portfolio.\n',
     done: ['Danke dir.', 'Dein E-Mail-Programm hat sich mit deiner Bewertung geöffnet. Drück dort auf Senden, damit sie bei mir ankommt. Sie erscheint auf der Seite, sobald ich geprüft habe, dass sie zu einem echten Projekt gehört.'],
     doneApi: ['Danke dir.', 'Deine Bewertung ist bei mir angekommen. Sie erscheint auf der Seite, sobald ich geprüft habe, dass sie zu einem echten Projekt gehört.'],
     steps: [
@@ -65,7 +65,7 @@ window.SITE_TEXT = (() => {
   };
   const tester = {
     type: 'tester', title: 'Tester werden', subject: a => `Neuer Tester: ${a.name || 'ein Besucher'}`,
-    intro: 'Hallo Issa,\n\nich möchte Tester werden.\n',
+    intro: 'Hallo Dre,\n\nich möchte Tester werden.\n',
     done: ['Fast auf der Liste.', 'Dein E-Mail-Programm hat sich mit deinen Antworten geöffnet. Drück dort auf Senden, dann melde ich mich, sobald etwas Neues zum Testen bereit ist.'],
     doneApi: ['Schau in dein Postfach.', 'Ich habe dir eine E-Mail geschickt. Klick auf den Link darin, dann bist du auf der Liste.'],
     steps: [
@@ -76,12 +76,12 @@ window.SITE_TEXT = (() => {
       { id: 'time', k: 'Über dich', sum: 'Zeit pro Test', q: 'Wie viel Zeit hast du pro Test?', ...one([['Etwa 15 Minuten'], ['Etwa eine Stunde'], ['Ein paar Stunden'], ['Kommt drauf an']], true) },
       { id: 'how', k: 'Über dich', sum: 'Feedback per', q: 'Wie gibst du am liebsten Feedback?', hint: 'Wähl alles, was passt.', ...many([['Schriftliche Notizen'], ['Screenshots oder Bildschirmaufnahme'], ['Ein kurzer Anruf'], ['Genaue Fehlerberichte']], true) },
       { id: 'you', k: 'Über dich', q: 'Wer bist du?', type: 'fields', fields: [{ id: 'name', label: 'Dein Name', sum: 'Name', req: true, ac: 'name' }, { id: 'email', label: 'E-Mail', sum: 'E-Mail', req: true, type: 'email', ac: 'email' }, { id: 'phone', label: 'Telefon', sum: 'Telefon', ...OPT, type: 'tel', ac: 'tel' }, { id: 'country', label: 'Land', sum: 'Land', ...OPT, ac: 'country-name' }] },
-      { id: 'notify', k: 'Über dich', sum: 'Benachrichtigung per', q: 'Wie soll ich dir von einem neuen Test erzählen?', ...one([['E-Mail'], ['SMS'], ['WhatsApp']], true), consent: 'Ich bin einverstanden, Nachrichten von Issa zu bekommen, wenn etwas zum Testen bereit ist. Ich kann sie jederzeit abbestellen.' },
+      { id: 'notify', k: 'Über dich', sum: 'Benachrichtigung per', q: 'Wie soll ich dir von einem neuen Test erzählen?', ...one([['E-Mail'], ['SMS'], ['WhatsApp']], true), consent: 'Ich bin einverstanden, Nachrichten von Dre zu bekommen, wenn etwas zum Testen bereit ist. Ich kann sie jederzeit abbestellen.' },
     ],
   };
   const support = {
     type: 'support', title: 'Support', subject: a => `Support: ${a.product || 'allgemein'} (${a.name || 'ein Nutzer'})`,
-    intro: 'Hallo Issa,\n\nich brauche Hilfe.\n',
+    intro: 'Hallo Dre,\n\nich brauche Hilfe.\n',
     done: ['Danke. Ich melde mich bald.', 'Dein E-Mail-Programm hat sich mit deiner Nachricht geöffnet. Drück dort auf Senden, damit sie bei mir ankommt.'],
     doneApi: ['Danke. Ich melde mich bald.', 'Deine Nachricht ist bei mir angekommen, und eine Kopie ist auf dem Weg in dein Postfach.'],
     steps: [
