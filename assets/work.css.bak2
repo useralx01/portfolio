@@ -1,0 +1,54 @@
+/* Work category pages (work/<cat>/), the category list on the home page, and agent project pages. Loaded after home.css / site.css. */
+
+/* home "Work" screen + category index: name, one line, count, arrow */
+.idx.cats b{grid-column:2/7}
+.idx.cats .k{grid-column:7/11;font-size:clamp(15px,1.25vw,19px);line-height:1.3;padding-right:8px}
+.idx.cats .c{grid-column:11/12;justify-self:end;font-style:normal;font-size:15px;color:var(--mute);font-variant-numeric:tabular-nums;white-space:nowrap}
+.idx.cats i{grid-column:12/-1}
+.idx a:hover b{color:var(--acc)}
+.idx a:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+@media (max-width:760px){
+  .idx.cats a{grid-template-columns:2.4em 1fr auto}
+  .idx.cats b{grid-column:2}.idx.cats .k{display:none}.idx.cats .c{display:none}.idx.cats i{grid-column:3}
+}
+
+/* category page: items = big film, name, one line, open link */
+.it{min-height:100svh;display:flex;border-top:1px solid var(--rule);background:var(--bg)}
+.it>.sg{flex:1;width:100%;height:auto;min-height:100svh}
+.backrow{padding-block:clamp(28px,5vw,72px) 0;border-top:1px solid var(--rule)}
+@media (max-width:760px){
+  .it{min-height:0;padding-bottom:clamp(56px,14vw,96px)}
+  .it>.sg{min-height:0}
+}
+
+/* an empty category: one plain call to action fills the screen */
+.emp{grid-column:1/-1;grid-row:2;align-self:stretch;display:flex;flex-direction:column;justify-content:flex-end;gap:22px;border-top:1px solid var(--rule);margin-top:clamp(18px,3svh,40px);padding-top:28px}
+.emp b{font-size:clamp(36px,6.4vw,112px);font-weight:600;letter-spacing:-.055em;line-height:.95;max-width:11em}
+.intro .emp p{grid-column:auto;grid-row:auto;align-self:auto;font-size:clamp(18px,1.6vw,26px);line-height:1.3;color:var(--mute);max-width:26em;padding-bottom:0}
+.emp .btn{width:max-content}
+@media (max-width:1100px){.emp{grid-row:3}}
+
+/* agent project page */
+.agent .steps{display:grid}
+.agent .steps li{display:grid;grid-template-columns:3em 1fr;column-gap:12px;padding:16px 0;border-top:1px solid var(--line);padding-left:0}
+.agent .steps li::before{display:none}
+.agent .steps li:first-child{border-top:0;padding-top:4px}
+.agent .steps .n{font-size:15px;color:var(--mute);padding-top:.35em;font-variant-numeric:tabular-nums}
+.agent .steps b{font-size:clamp(20px,1.8vw,26px);font-weight:500;letter-spacing:-.03em;line-height:1.15}
+.agent .steps .d{grid-column:2;color:var(--mute);margin-top:6px;font-size:16px;max-width:34em}
+.agent ul li{font-size:clamp(18px,1.5vw,22px);line-height:1.3;padding-left:22px}
+.agent ul li::before{width:10px;top:.7em}
+.agent-cta{margin:0 0 clamp(36px,5vw,72px)}
+.cb-body .film video{width:100%}
+
+.intro h2{padding-bottom:.1em}
+.hero-m .film{max-height:none}
+.hero-m .film video{object-fit:contain;background:var(--film)}
+@media (max-width:760px){
+  #work.intro,.catp .intro{min-height:100svh}
+  .idx.cats a{grid-template-rows:auto auto;align-content:center;row-gap:4px}
+  .idx.cats .k{display:block;grid-column:2;grid-row:2;font-size:15px;padding:0}
+  .idx.cats b{grid-row:1}.idx.cats .n{grid-row:1}.idx.cats i{grid-row:1/3;align-self:center}
+}
+@media (max-width:760px){.catp .intro h2{font-size:min(15vw,21svh,calc(158vw / var(--ch,8)))}}
+@media (min-width:761px){.catp .intro h2{font-size:min(15vw,21svh,calc(125vw / var(--ch,8)))}}

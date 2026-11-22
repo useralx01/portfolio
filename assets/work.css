@@ -1,0 +1,249 @@
+/* Work category pages (work/<cat>/), the category list on the home page, and agent project pages. Loaded after home.css / site.css. */
+
+/* home "Work" screen + category index: name, one line, count, arrow */
+.idx.cats b{grid-column:2/7}
+.idx.cats .k{grid-column:7/11;font-size:clamp(15px,1.25vw,19px);line-height:1.3;padding-right:8px}
+.idx.cats .c{grid-column:11/12;justify-self:end;font-style:normal;font-size:15px;color:var(--mute);font-variant-numeric:tabular-nums;white-space:nowrap}
+.idx.cats i{grid-column:12/-1}
+.idx a:hover b{color:var(--acc)}
+.idx a:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+@media (max-width:760px){
+  .idx.cats a{grid-template-columns:2.4em 1fr auto}
+  .idx.cats b{grid-column:2}.idx.cats .k{display:none}.idx.cats .c{display:none}.idx.cats i{grid-column:3}
+}
+
+/* ---- full-screen film block with the name on it: project page top + category items ---- */
+.hx{--hs:min(10vw,17svh);position:relative;height:100svh;min-height:540px;overflow:hidden;border-top:1px solid var(--rule);background:var(--film)}
+.hx#top{border-top:0}
+.hxf{position:absolute;inset:0;display:block;background:var(--film)}
+.hxf video,.hxf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hxc{position:absolute;left:0;right:0;bottom:0;pointer-events:none}
+.cap2{pointer-events:auto;display:grid;gap:14px;justify-items:start;width:max-content;max-width:min(100%,1200px);background:var(--bg);border-top:1px solid var(--rule);border-right:1px solid var(--rule);padding:clamp(18px,3svh,32px) clamp(28px,4vw,64px) clamp(22px,3.6svh,40px) calc(max(0px,(100vw - var(--max))/2) + var(--g))}
+.cap2 .back{font-size:14px;color:var(--mute);margin-bottom:6px}.cap2 .back:hover{color:var(--ink)}
+.cap2 .kd{font-size:14px;font-weight:500;color:var(--mute)}
+.cap2 .kd i{font-style:normal;font-variant-numeric:tabular-nums;margin-right:14px}
+.hn{font-weight:600;letter-spacing:-.062em;line-height:.9;padding-bottom:.08em;margin-left:-.04em;font-size:min(var(--hs),calc(105vw / var(--ch,8)))}
+.cap2 .ln{font-size:clamp(18px,1.6vw,26px);line-height:1.25;letter-spacing:-.022em;max-width:22em}
+.lks{display:flex;flex-wrap:wrap;gap:10px 28px}.lks:empty{display:none}
+@media (max-width:760px){
+  .hx{height:auto;min-height:0;overflow:visible;border-top:1px solid var(--rule)}
+  .hx#top{padding-top:var(--hh)}
+  .hxf{position:relative;inset:auto;aspect-ratio:16/9}
+  .hxc{position:static}
+  .cap2{width:auto;max-width:none;border:0;padding:22px var(--g) 40px}
+  .hn{font-size:min(var(--nm),calc(165vw / var(--ch,8)))}
+}
+
+/* ---- numbered detail rows: short title, one or two short lines; fill the screen ---- */
+.rw{border-top:1px solid var(--rule);min-height:100svh;display:flex}
+.rw>.wrap{width:100%;display:flex;flex-direction:column;padding-block:calc(var(--hh) + 20px) clamp(20px,3.4svh,40px)}
+.rw ol{flex:1;display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.rw li{flex:1 1 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:center;padding:clamp(14px,2.2svh,26px) 0;border-bottom:1px solid var(--line)}
+.rw .n{grid-column:1/2;font-size:15px;color:var(--mute);font-variant-numeric:tabular-nums}
+.rw h3{grid-column:2/7;font-size:clamp(30px,min(4.6vw,7.4svh),76px);font-weight:600;letter-spacing:-.055em;line-height:1}
+.rw p{grid-column:7/-1;font-size:clamp(18px,min(1.7vw,3svh),27px);line-height:1.28;letter-spacing:-.02em;max-width:24em}
+@media (max-width:760px){
+  .rw{min-height:0;border-top:1px solid var(--rule)}
+  .rw>.wrap{padding-block:0 8px}
+  .rw ol{border-top:0}
+  .rw li{display:grid;grid-template-columns:2.4em 1fr;padding:22px 0;align-items:start;row-gap:8px}
+  .rw .n{grid-column:1;padding-top:.7em}.rw h3{grid-column:2;font-size:clamp(28px,8.6vw,40px)}.rw p{grid-column:2;font-size:17px}
+}
+
+/* ---- film + feature groups: strict grid, name and one line each ---- */
+.mg{border-top:1px solid var(--rule);padding-block:clamp(40px,6vw,96px)}
+.mg h2{font-size:clamp(44px,7vw,120px);font-weight:600;letter-spacing:-.06em;line-height:.9;margin:0 0 clamp(28px,4vw,56px) -.04em;padding-bottom:.08em}
+.mgrid{display:grid;gap:clamp(32px,3.6vw,56px) var(--g)}
+.mgrid.c1{grid-template-columns:1fr}.mgrid.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mgrid figure{display:grid;gap:14px;align-content:start}
+.vf{position:relative;aspect-ratio:16/9;background:var(--film);border:1px solid var(--line)}
+.vf video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.mgrid figcaption{display:grid;gap:6px;border-top:1px solid var(--rule);padding-top:14px}
+.mgrid figcaption b{font-size:clamp(24px,2.4vw,40px);font-weight:600;letter-spacing:-.045em;line-height:1}
+.mgrid figcaption span{color:var(--mute);font-size:clamp(16px,1.3vw,20px);line-height:1.3;max-width:30em}
+.shots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g)}
+.shots img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border:1px solid var(--line);background:var(--frame)}
+@media (max-width:760px){.mgrid.c2,.shots{grid-template-columns:1fr}}
+
+/* ---- big "next" rows, same look as the home index rows ---- */
+.nxs{border-top:1px solid var(--rule);padding-block:0 clamp(40px,6vw,96px)}
+.nx{border-top:0}
+.nx li{border-bottom:1px solid var(--line)}
+.nx a{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:center;padding:clamp(24px,5svh,60px) 0}
+.nx small{grid-column:1/4;font-size:15px;color:var(--mute)}
+.nx b{grid-column:4/11;font-size:clamp(36px,6.4vw,112px);font-weight:600;letter-spacing:-.058em;line-height:.95;padding-bottom:.06em}
+.nx i{grid-column:11/-1;justify-self:end;font-style:normal;font-size:clamp(22px,2.4vw,36px);color:var(--mute)}
+.nx a:hover b{color:var(--acc)}
+.nx a:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+@media (max-width:760px){
+  .nx a{padding:22px 0;row-gap:6px}
+  .nx small{grid-column:1/-1}.nx b{grid-column:1/11;font-size:clamp(26px,8.2vw,44px)}.nx i{grid-column:11/-1}
+}
+
+/* an empty category: nothing extra, just the title screen */
+.intro.empty .wrap{grid-template-rows:1fr;align-content:end}
+.intro.empty h2,.intro.empty p{grid-row:1}
+@media (max-width:1100px){.intro.empty .wrap{grid-template-rows:auto auto;align-content:end}.intro.empty h2{grid-row:1}.intro.empty p{grid-row:2}}
+
+.intro h2{padding-bottom:.1em}
+@media (max-width:760px){
+  #work.intro,.catp .intro{min-height:100svh}
+  .idx.cats a{grid-template-rows:auto auto;align-content:center;row-gap:4px}
+  .idx.cats .k{display:block;grid-column:2;grid-row:2;font-size:15px;padding:0}
+  .idx.cats b{grid-row:1}.idx.cats .n{grid-row:1}.idx.cats i{grid-row:1/3;align-self:center}
+}
+@media (max-width:760px){.catp .intro h2{font-size:min(15vw,21svh,calc(158vw / var(--ch,8)))}}
+@media (min-width:761px){.catp .intro h2{font-size:min(15vw,21svh,calc(125vw / var(--ch,8)))}}
+
+/* contact block: keep the content on the page's left edge (the flex column shrank and centred it) */
+.end>.wrap{width:100%}
+.intro.empty h2,.intro.empty p{align-self:end}
+
+/* project without a film (Eden): compact title block, the explainer follows right away */
+.etl{border-top:0;padding-top:calc(var(--hh) + clamp(28px,7svh,80px));padding-bottom:clamp(28px,5svh,56px)}
+.etl .wrap{display:grid;gap:14px;justify-items:start}
+.etl .back{font-size:14px;color:var(--mute);margin-bottom:6px}.etl .back:hover{color:var(--ink)}
+.etl .kd{font-size:14px;font-weight:500;color:var(--mute)}
+.etl .hn{--hs:min(15vw,24svh);font-size:min(var(--hs),calc(105vw / var(--ch,8)))}
+.etl .ln{font-size:clamp(20px,2vw,32px);line-height:1.22;letter-spacing:-.025em;max-width:24em}
+
+/* ===== Scale + layout (22 Nov, Licht): "everything is way too big; Apple scales some things big and some small".
+   Big stays: hero title, category names (Work index + category page headings). Everything else is a calm, smaller scale.
+   Every project = one row: name + text on the left, the clean film on the right (nothing over it); click the film = it expands. ===== */
+:root{--pad-x:max(var(--g),calc((100vw - var(--max))/2 + var(--g)));--t-sec:clamp(34px,3.9vw,60px);--t-name:clamp(30px,3vw,46px);--t-lead:clamp(18px,1.35vw,21px);--t-body:17px}
+
+/* section headings (not the category names) */
+.sh h2,.how h2,.about h2,.mg h2,.end h2{font-size:var(--t-sec);line-height:1;letter-spacing:-.045em}
+.end h2{max-width:12em}
+.say .big{font-size:clamp(26px,2.9vw,44px);line-height:1.12;letter-spacing:-.035em;max-width:24em}
+html.pin .say{height:200vh}
+.side .sub,.about .tx2,.etl .ln{font-size:var(--t-lead)}
+.svc li{padding:clamp(20px,2.6vw,36px) 0}
+.svc h3{font-size:clamp(24px,2.3vw,34px);letter-spacing:-.035em;line-height:1.05}
+.svc p,.how .d,.cta span{font-size:var(--t-body)}
+.how b{font-size:clamp(20px,1.8vw,28px)}
+.faq summary{font-size:clamp(18px,1.5vw,22px)}
+#about,#faq{min-height:0}
+.end{min-height:0}
+
+/* category pages: heading at the top, short text under it, then the projects */
+.catp .intro{min-height:0;align-items:flex-start;padding-block:calc(var(--hh) + clamp(28px,6svh,72px)) clamp(28px,5svh,56px)}
+.catp .intro .wrap{grid-template-rows:auto auto;align-items:start}
+.catp .intro h2{grid-row:1;grid-column:1/-1}
+.catp .intro p{grid-row:2;grid-column:1/8;align-self:start;margin-top:clamp(20px,3svh,36px);padding:0}
+.catp .intro .idx{display:none}
+.intro.empty .wrap{align-content:start}
+.intro.empty h2,.intro.empty p{align-self:start}
+
+/* project rows (category items and the top of project pages) */
+.hx{height:auto;min-height:0;overflow:visible;background:none;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:center;padding:clamp(36px,7svh,80px) var(--pad-x)}
+.hx#top{padding-top:calc(var(--hh) + clamp(28px,5svh,56px))}
+.hxc{position:static;grid-column:1/5;grid-row:1;pointer-events:auto}
+.cap2{width:auto;max-width:none;background:none;border:0;padding:0;gap:12px}
+.hn{font-size:var(--t-name);letter-spacing:-.045em;line-height:1}
+.cap2 .ln{font-size:var(--t-lead);line-height:1.35;max-width:22em}
+.hxf{position:relative;inset:auto;grid-column:5/-1;grid-row:1;aspect-ratio:16/9;cursor:zoom-in;overflow:hidden;border:1px solid var(--line)}
+.hxf video,.hxf img{object-fit:cover}
+
+/* home scenes become the same rows */
+html.fx .scene,.scene{height:auto}
+html.fx .stage,.stage{position:relative;top:auto;height:auto;overflow:visible}
+.scene{border-top:1px solid var(--rule)}
+.scene.hero{border-top:0}
+.scene:not(.hero) .sg{height:auto;grid-template-rows:auto 1fr;align-items:center;padding-block:clamp(36px,7svh,80px)}
+.scene:not(.hero) .nm{grid-column:1/5;grid-row:1;align-self:end;font-size:var(--t-name);letter-spacing:-.045em;line-height:1;margin:0}
+.scene:not(.hero) .no{display:none}
+.scene:not(.hero) .tx{grid-column:1/5;grid-row:2;align-self:start;border-top:0;padding-top:12px;gap:12px}
+.scene .tx .ln{font-size:var(--t-lead);line-height:1.35}
+.scene:not(.hero) .slot{grid-column:5/-1;grid-row:1/3;align-self:center;max-height:none}
+html.fx .slot{position:relative}
+html.fx .film,.film{position:absolute;inset:0;width:100%;height:100%;cursor:zoom-in}
+html.fx .cap,.cap{display:none}
+.hero .sg{height:auto;padding-bottom:clamp(36px,6svh,72px)}
+.hero .slot{max-height:none}
+
+/* home "Work" index: category names stay big, the screen is not forced full height */
+#work.intro{min-height:0}
+
+/* next rows and detail rows: smaller */
+.nx a{padding:clamp(16px,2.6svh,28px) 0}
+.nx b{font-size:clamp(24px,2.2vw,34px);letter-spacing:-.035em}
+.nx i{font-size:22px}
+.nxs{padding-bottom:clamp(32px,5vw,72px)}
+.rw{min-height:0}
+.rw>.wrap{padding-block:clamp(28px,5svh,56px)}
+.rw li{flex:none;padding:clamp(16px,2.4svh,26px) 0}
+.rw h3{font-size:clamp(22px,2vw,30px);letter-spacing:-.035em}
+.rw p{font-size:var(--t-lead)}
+.mg{padding-block:clamp(32px,5vw,72px)}
+.mgrid figcaption b{font-size:clamp(20px,1.6vw,26px)}
+.mgrid figcaption span{font-size:var(--t-body)}
+
+/* expanded film: full width under the text, full film with sound and controls */
+.xp .hxf,.xp .slot{grid-column:1/-1;grid-row:3;cursor:auto}
+.scene.xp:not(.hero) .slot{grid-column:1/-1;grid-row:3;margin-top:22px}
+.hx.xp .hxf{margin-top:22px}
+.xp .film,.xp .hxf{cursor:auto}
+.xpx{position:absolute;right:12px;top:12px;z-index:4;width:40px;height:40px;background:var(--bg);color:var(--ink);border:1px solid var(--line);font-size:22px;line-height:1}
+
+@media (max-width:1100px){
+  .hxc,.scene:not(.hero) .nm,.scene:not(.hero) .tx{grid-column:1/6}
+  .hxf,.scene:not(.hero) .slot{grid-column:6/-1}
+}
+@media (max-width:760px){
+  :root{--t-sec:clamp(30px,8.4vw,40px);--t-name:clamp(26px,7.2vw,34px);--t-lead:17px}
+  .hx{grid-template-columns:1fr;padding:28px var(--g) 36px}
+  .hx#top{padding-top:calc(var(--hh) + 20px)}
+  .hxf{grid-column:1;grid-row:1;margin-inline:calc(var(--g)*-1)}
+  .hxc{grid-column:1;grid-row:2;margin-top:16px}
+  .scene:not(.hero) .sg{grid-template-rows:auto auto auto;padding-block:28px 36px}
+  .scene:not(.hero) .slot{grid-column:1/-1;grid-row:1;margin:0 calc(var(--g)*-1)}
+  .scene:not(.hero) .nm{grid-column:1/-1;grid-row:2;margin-top:16px}
+  .scene:not(.hero) .tx{grid-column:1/-1;grid-row:3}
+  .scene{padding-bottom:0}
+  .catp .intro p{grid-column:1/-1}
+  .catp .intro{min-height:0}
+  .xp .hxf,.xp .slot{grid-row:1}
+}
+/* statement: no pinned empty screen, just the sentence */
+html.pin .say,.say{height:auto}
+html.pin .say .stage,.say .stage,html:not(.pin) .say .stage{position:relative;height:auto;min-height:0;padding:0}
+.say .wrap{padding-block:clamp(56px,11svh,120px)}
+.say .w{opacity:1!important}
+/* group intros on the home page (Websites): heading + line, the rows follow; no second list of the same names */
+.intro:not(#work){min-height:0}
+.intro:not(#work) .idx{display:none}
+.intro:not(#work) .wrap{grid-template-rows:auto}
+/* the model section on project pages: heading on the same calm scale */
+main .om .om-h h2{font-size:var(--t-sec);line-height:1;letter-spacing:-.045em}
+.om{border-top:1px solid var(--rule)}
+.xpb{font:inherit;background:none;border:0;padding:0;cursor:pointer}
+@media (max-width:760px){.sh{display:block}.sh p{margin-top:12px;max-width:none}}
+/* expanded film fits on one screen */
+.hx.xp .hxf,.scene.xp:not(.hero) .slot{width:100%;max-width:calc((100svh - var(--hh) - 48px) * 16 / 9);justify-self:center}
+
+/* ===== one list for Work + Services (22 Nov): name big, what you get, two links ===== */
+.ofs{position:relative}
+.ofs .anc{position:absolute;top:0}
+.ofs .wrap{grid-template-rows:auto auto auto}
+.ofs h2{grid-row:1}
+.ofs .wrap>p{grid-row:1;align-self:end}
+.ofl{grid-column:1/-1;grid-row:2;margin-top:clamp(24px,4svh,48px);border-top:1px solid var(--rule)}
+.ofl li{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:center;padding:clamp(16px,2.6svh,28px) 0;border-bottom:1px solid var(--line)}
+.ofl .n{grid-column:1/2;font-size:15px;color:var(--mute);font-variant-numeric:tabular-nums}
+.ofl .cn{grid-column:2/6}
+.ofl .cn b{font-size:clamp(28px,min(4vw,6svh),64px);font-weight:600;letter-spacing:-.05em;line-height:1}
+.ofl .cn:hover b{color:var(--acc)}
+.ofl .k{grid-column:6/10;font-size:clamp(16px,1.2vw,18px);line-height:1.4;color:var(--mute);max-width:28em;padding-right:12px}
+.ofl .cl{grid-column:10/-1;display:grid;gap:8px;justify-items:start}
+.ofl .cl .lk{font-size:15px}
+.ofs .cta{grid-column:1/-1;grid-row:3;margin-top:clamp(28px,4svh,48px)}
+@media (max-width:1100px){.ofs .wrap>p{grid-row:2;align-self:start}.ofl{grid-row:3}.ofs .cta{grid-row:4}}
+@media (max-width:760px){
+  .ofl li{grid-template-columns:2.4em 1fr;row-gap:8px;padding:20px 0;align-items:start}
+  .ofl .n{grid-column:1;padding-top:.5em}
+  .ofl .cn,.ofl .k,.ofl .cl{grid-column:2}
+  .ofl .cn b{font-size:clamp(26px,8vw,36px)}
+  .ofl .k{font-size:16px;padding:0}
+  .ofl .cl{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:4px}
+}

@@ -1,0 +1,168 @@
+/* Home page: full-screen scenes. Apple-scale storytelling, Palantir-hard edges. Loaded after site.css. */
+:root{--hn:min(7.6vw,14svh);--nm:min(11.5vw,19svh);--sp:clamp(18px,3.2svh,40px)}
+.hd{transition:transform var(--t3) var(--ease)}
+.hd.up{transform:translateY(-101%)}
+main{padding-top:0}
+
+/* ---- scene = one full-screen story with a film that grows ---- */
+.stage{position:relative;background:var(--bg)}
+.sg{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);grid-template-rows:auto 1fr;height:100%;padding-top:calc(var(--hh) + var(--sp));padding-bottom:var(--sp)}
+.nm,.hero h1{font-weight:600;letter-spacing:-.062em;line-height:.9;margin-left:-.04em}
+.nm{grid-column:1/11;grid-row:1;font-size:var(--nm)}
+.no{grid-column:11/-1;grid-row:1;justify-self:end;font-size:15px;font-variant-numeric:tabular-nums;color:var(--mute);padding-top:.7em}
+.tx{grid-column:1/5;grid-row:2;align-self:end;display:grid;gap:18px;padding-right:clamp(0px,2vw,32px);border-top:1px solid var(--rule);padding-top:18px}
+.tx .kd{font-size:14px;font-weight:500;color:var(--mute)}
+.tx .ln{font-size:clamp(20px,1.75vw,28px);line-height:1.24;letter-spacing:-.025em;max-width:20em}
+.slot{grid-column:5/-1;grid-row:2;align-self:end;position:relative;width:100%;aspect-ratio:16/9;max-height:calc(100svh - var(--hh) - var(--sp)*2 - var(--nm)*.9 - 14px);background:var(--film)}
+.film{position:absolute;inset:0;display:block;background:var(--film);border:0;aspect-ratio:auto;overflow:hidden}
+.film video,.film img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cap{display:none}
+
+/* hero */
+.hero h1{grid-column:1/-1;grid-row:1;font-size:var(--hn);max-width:12.5em;line-height:.93}
+.hero .slot{grid-column:1/9;max-height:calc(100svh - var(--hh) - var(--sp)*2 - var(--hn)*1.86 - 14px)}
+.side{grid-column:9/-1;grid-row:2;align-self:end;display:grid;gap:0}
+.side .sub{font-size:clamp(20px,1.75vw,28px);line-height:1.22;letter-spacing:-.025em;max-width:14em;margin-bottom:clamp(20px,2.6svh,32px)}
+.side .acts{margin:0 0 clamp(22px,3.4svh,44px);grid-column:auto;gap:10px}
+.side .acts .btn{flex:1 1 auto}
+.hfacts{display:grid;border-top:1px solid var(--rule)}
+.hfacts div{display:grid;grid-template-columns:7.5em 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.hfacts b{font-weight:500;color:var(--mute)}
+.btn.big{height:60px;padding:0 30px;font-size:16px}
+
+/* caption block that appears on the full-bleed film */
+html.fx .cap{display:flex;position:absolute;left:0;bottom:0;z-index:3;align-items:baseline;gap:clamp(14px,2vw,32px);padding:20px clamp(20px,2.3vw,32px);background:var(--bg);color:var(--ink);opacity:0;pointer-events:none;transition:opacity var(--t3) var(--ease)}
+html.fx .cap.on{opacity:1;pointer-events:auto}
+.cap b{font-size:clamp(22px,2vw,32px);font-weight:600;letter-spacing:-.035em;line-height:1}
+.cap span{font-size:15px;color:var(--mute)}
+.cap i{font-style:normal;font-size:15px;font-weight:500;border-bottom:1px solid currentColor}
+
+/* desktop: pinned, film grows to full bleed */
+html.fx .scene{height:var(--sh,250vh);margin-bottom:0}
+html.fx .scene.hero{margin-bottom:0}
+html.fx .stage{position:sticky;top:0;height:100svh;overflow:hidden}
+html.fx .slot{position:static}
+html.fx .film{position:absolute;inset:auto;left:0;top:0;width:100%;height:100%;z-index:2}
+
+/* statement: words light up while pinned */
+.say{border-top:1px solid var(--rule)}
+.say .stage{display:flex;align-items:center}
+.say .wrap{width:100%;padding-block:calc(var(--hh) + 20px) 40px}
+.say .big{font-size:clamp(34px,6.1vw,112px);font-weight:600;letter-spacing:-.05em;line-height:1;max-width:15.5em}
+html.pin .say{height:320vh}
+html.pin .say .stage{position:sticky;top:0;height:100svh}
+html:not(.pin) .say .stage{min-height:70svh;padding-block:80px}
+
+/* intros between groups */
+.intro{border-top:1px solid var(--rule);min-height:100svh;display:flex;align-items:flex-end;padding-block:calc(var(--hh) + 40px) clamp(28px,5vw,72px)}
+.intro .wrap{width:100%;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:end}
+.intro h2{grid-column:1/10;font-size:clamp(64px,15vw,260px);font-weight:600;letter-spacing:-.07em;line-height:.85;margin-left:-.04em}
+.intro p{grid-column:10/-1;font-size:clamp(18px,1.5vw,24px);line-height:1.25;letter-spacing:-.02em;color:var(--mute);max-width:14em;padding-bottom:.5em}
+
+/* services */
+.svc{border-top:1px solid var(--rule)}
+.svc li{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding:clamp(26px,4.4vw,64px) 0;border-bottom:1px solid var(--line);align-items:start}
+.svc .n{grid-column:1/2;font-size:15px;color:var(--mute);padding-top:1.1em;font-variant-numeric:tabular-nums}
+.svc h3{grid-column:2/8;font-size:clamp(36px,5.6vw,96px);font-weight:600;letter-spacing:-.058em;line-height:.95}
+.svc .d{grid-column:8/-1;display:grid;gap:20px;padding-top:.6em}
+.svc p{color:var(--mute);font-size:clamp(17px,1.4vw,21px);line-height:1.35;max-width:26em}
+.cta{display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px;margin-top:clamp(36px,4vw,64px)}
+.cta span{color:var(--mute);font-size:19px;max-width:30em}
+
+/* how: steps light up while pinned */
+.how{border-top:1px solid var(--rule);background:var(--band)}
+.how .stage{background:var(--band);display:flex;align-items:center}
+.how .hg{width:100%;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding-block:calc(var(--hh) + 24px) 40px;align-items:start}
+.how h2{grid-column:1/6;font-size:clamp(44px,6.6vw,120px);font-weight:600;letter-spacing:-.06em;line-height:.92}
+.how .terms{grid-column:1/6;margin-top:clamp(28px,4svh,56px);display:grid;border-top:1px solid var(--rule)}
+.how .terms li{padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;font-weight:500}
+.how ol{grid-column:7/-1;grid-row:1/3;border-top:1px solid var(--rule)}
+.how ol li{display:grid;grid-template-columns:3.2em 1fr;column-gap:12px;padding:clamp(16px,3.2svh,32px) 0;border-bottom:1px solid var(--line)}
+.how .n{font-size:15px;color:var(--mute);padding-top:.5em;font-variant-numeric:tabular-nums}
+.how b{font-size:clamp(24px,2.9vw,48px);font-weight:600;letter-spacing:-.04em;line-height:1.05;display:block}
+.how .d{grid-column:2;color:var(--mute);font-size:clamp(16px,1.3vw,20px);line-height:1.35;margin-top:10px;max-width:30em}
+html.pin .how{height:360vh}
+html.pin .how .stage{position:sticky;top:0;height:100svh;overflow:hidden}
+
+/* about, faq, end */
+.about{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g)}
+.about h2{grid-column:1/7;font-size:clamp(44px,6.6vw,104px);font-weight:600;letter-spacing:-.06em;line-height:.92}
+.about .tx2{grid-column:8/-1;display:grid;gap:22px;font-size:clamp(20px,1.8vw,28px);line-height:1.3;letter-spacing:-.022em;max-width:26em;align-self:end}
+.sh h2{font-weight:600;letter-spacing:-.06em}
+.faq summary{font-weight:500;font-size:clamp(21px,2.1vw,32px);letter-spacing:-.035em}
+.end h2{font-weight:600;letter-spacing:-.06em;max-width:9em;font-size:clamp(52px,10vw,176px)}
+.end{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end}
+
+/* tablet and phone */
+@media (max-width:1100px){
+  :root{--hn:min(9.4vw,8svh);--nm:min(13vw,11svh)}
+  .tx{grid-column:1/-1;grid-row:2;align-self:start;margin-top:20px}
+  .slot{grid-column:1/-1;grid-row:3;margin-top:24px;max-height:none}
+  .sg{grid-template-rows:auto auto 1fr}
+  .hero h1{max-width:none}
+  .hero .slot{grid-column:1/-1;grid-row:2;max-height:none}
+  .side{grid-column:1/-1;grid-row:3;margin-top:24px}
+  .intro h2{grid-column:1/-1}.intro p{grid-column:1/-1;margin-top:20px}
+  .svc .d{grid-column:2/-1;margin-top:14px}.svc h3{grid-column:2/-1}
+  .about h2,.about .tx2{grid-column:1/-1}.about .tx2{margin-top:24px}
+  .how h2,.how .terms{grid-column:1/-1}.how ol{grid-column:1/-1;grid-row:auto;margin-top:28px}
+}
+@media (max-width:760px){
+  :root{--hn:clamp(40px,11.6vw,64px);--nm:clamp(48px,15.4vw,96px);--sp:20px}
+  .sg{height:auto;padding-top:calc(var(--hh) + 22px);padding-bottom:0}
+  .scene{padding-bottom:clamp(56px,14vw,96px);border-top:1px solid var(--rule)}
+  .scene.hero{border-top:0;padding-bottom:40px}
+  .nm{grid-column:1/10}
+  .tx{margin-top:16px;border-top:0;padding:0;grid-row:3}
+  .slot{margin-inline:calc(var(--g)*-1);width:auto;grid-row:2;margin-top:22px}
+  .hero .slot{grid-row:2;margin-top:22px}
+  .side .acts .btn{flex:1 1 100%}
+  .btn.big{height:56px}
+  .hfacts div{grid-template-columns:6.5em 1fr}
+  .svc .n{grid-column:1/-1;padding-top:0;margin-bottom:12px}.svc h3,.svc .d{grid-column:1/-1}
+  .intro{min-height:52svh}
+  .say .big{font-size:clamp(30px,9.2vw,56px)}
+  html.pin .say{height:280vh}
+  html.pin .how{height:420vh}
+  .how .hg{padding-top:calc(var(--hh) + 12px);padding-bottom:24px}
+  .how h2{font-size:clamp(40px,12vw,64px)}
+  .how .terms{display:none}
+  .how ol{margin-top:18px}
+  .how ol li{padding:12px 0}
+  .how b{font-size:clamp(21px,6vw,28px)}
+  .how .d{font-size:15px;margin-top:6px}
+  .end{min-height:0}
+}
+@media (prefers-reduced-motion:reduce){.hd{transition:none}html.fx .cap{transition:none}}
+.film::after{content:"";position:absolute;inset:0;border:1px solid var(--line);pointer-events:none;z-index:1}
+.sh h2{font-size:clamp(52px,8.4vw,150px);line-height:.9;grid-column:1/9}
+.sh{align-items:end}
+/* every block fills the screen (22 Nov: "the site doesn't fully fill the screen") */
+@media (min-width:761px){
+  #about,#faq{min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+  #about>.wrap,#faq>.wrap{width:100%}
+  html:not(.pin) .say .stage{min-height:100svh}
+}
+/* intro screens: heading plus a full-height index of what follows, so the screen is filled, not empty */
+.intro{align-items:stretch}
+.intro .wrap{grid-template-rows:auto 1fr;align-items:start}
+.intro h2{grid-row:1}
+.intro p{grid-row:1;align-self:end}
+.idx{grid-column:1/-1;grid-row:2;align-self:stretch;display:flex;flex-direction:column;margin-top:clamp(24px,4svh,56px);border-top:1px solid var(--rule)}
+.idx li{flex:1 1 0;border-bottom:1px solid var(--line);display:flex}
+.idx a{flex:1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);align-items:center;padding:clamp(10px,1.6svh,20px) 0}
+.idx .n{grid-column:1/2;font-size:15px;color:var(--mute);font-variant-numeric:tabular-nums}
+.idx b{grid-column:2/8;font-size:clamp(28px,4.2vw,72px);font-weight:600;letter-spacing:-.05em;line-height:1}
+.idx .k{grid-column:8/12;font-size:clamp(15px,1.2vw,18px);color:var(--mute)}
+.idx i{grid-column:12/-1;justify-self:end;font-style:normal;font-size:20px;color:var(--mute)}
+@media (max-width:760px){
+  .idx a{grid-template-columns:2.4em 1fr auto}
+  .idx .n{grid-column:1}.idx b{grid-column:2;font-size:clamp(24px,8vw,36px)}.idx .k{display:none}.idx i{grid-column:3}
+}
+/* fit the whole index on one screen */
+.intro{padding-block:calc(var(--hh) + 24px) clamp(24px,4svh,56px)}
+.intro h2{font-size:min(15vw,21svh)}
+.idx{margin-top:clamp(18px,3svh,40px)}
+.idx a{padding:clamp(6px,1.2svh,16px) 0}
+.idx b{font-size:clamp(26px,min(4.2vw,6svh),72px)}
+@media (max-width:1100px){.intro p{grid-row:2;align-self:start}.idx{grid-row:3}.intro .wrap{grid-template-rows:auto auto 1fr}}
