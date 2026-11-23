@@ -326,14 +326,14 @@
         v = [ux - (ux - base[0]) * g, uy - (uy - base[1]) * g, nw, base[3] * g]; animate ? goCam(v) : setVB(v)
     }
     // one finger / plain mouse drag = turn (left-right spins, up-down tilts); Shift, right or middle mouse drag = move; two fingers = move + pinch zoom
-    var panMode = false;
+    var panMode = false, tol = 5;  // a finger wobbles a few px during a tap: 16 px still counts as a tap on touch
     function mkStart() { var m = mid(); start = { vb: vb.slice(), x: m[0], y: m[1], d: pd(), yaw: YAW, el: EL } }
     svg.addEventListener('contextmenu', function (e) { e.preventDefault() });
-    svg.addEventListener('pointerdown', function (e) { ptrs[e.pointerId] = [e.clientX, e.clientY]; try { svg.setPointerCapture(e.pointerId) } catch (_) { } if (list().length === 1) { moved = 0; panMode = e.shiftKey || e.button === 1 || e.button === 2 } mkStart(); svg.classList.add('drag') });
+    svg.addEventListener('pointerdown', function (e) { ptrs[e.pointerId] = [e.clientX, e.clientY]; try { svg.setPointerCapture(e.pointerId) } catch (_) { } if (list().length === 1) { moved = 0; panMode = e.shiftKey || e.button === 1 || e.button === 2; tol = e.pointerType === 'mouse' ? 5 : 16 } mkStart(); svg.classList.add('drag') });
     svg.addEventListener('pointermove', function (e) {
       if (!ptrs[e.pointerId]) return; ptrs[e.pointerId] = [e.clientX, e.clientY]; var n = list().length, kk = Math.max(start.vb[2] / svg.clientWidth, start.vb[3] / svg.clientHeight), m = mid(), dx = m[0] - start.x, dy = m[1] - start.y;
       if (n === 1) {
-        moved = Math.max(moved, Math.abs(dx) + Math.abs(dy)); if (moved <= 4) return;
+        moved = Math.max(moved, Math.abs(dx) + Math.abs(dy)); if (moved <= tol) return;
         if (panMode) setVB([start.vb[0] - dx * kk, start.vb[1] - dy * kk, start.vb[2], start.vb[3]]);
         else { cancelAnimationFrame(anim); turn(start.yaw + dx * .009, e.pointerType === 'touch' ? start.el : start.el + dy * .004) }  // touch: sideways turns, up/down stays page scroll
       }
@@ -341,9 +341,16 @@
     });
     function up(e) { delete ptrs[e.pointerId]; if (!list().length) svg.classList.remove('drag'); else mkStart() }
     svg.addEventListener('pointerup', function (e) {
-      var click = moved <= 4 && list().length === 1; up(e); if (!click) return;
+      var click = moved <= tol && list().length === 1; up(e); if (!click) return;
       var el = document.elementFromPoint(e.clientX, e.clientY); el = el && el.closest && el.closest('[data-k]');
+      tapT = Date.now();
       if (el && svg.contains(el) && isBuilt(el) && INFO[el.getAttribute('data-k')]) openK(el.getAttribute('data-k'), el); else if (!card.hidden) closeCard()
+    });
+    // backup for iPhone Safari: if the touch was dropped (pointercancel), the normal click event still opens the thing
+    var tapT = 0;
+    svg.addEventListener('click', function (e) {
+      if (Date.now() - tapT < 500) return; var el = e.target.closest && e.target.closest('[data-k]');
+      if (el && svg.contains(el) && isBuilt(el) && INFO[el.getAttribute('data-k')]) openK(el.getAttribute('data-k'), el)
     });
     svg.addEventListener('pointercancel', up);
     svg.addEventListener('wheel', function (e) { if (!e.ctrlKey) return; e.preventDefault(); zoomAt([e.clientX, e.clientY], Math.exp(e.deltaY * .01)) }, { passive: false });
