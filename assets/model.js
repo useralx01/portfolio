@@ -143,8 +143,8 @@
   function edge(fn, a, b, n) { var r = [], i; for (i = 0; i < n; i++) r.push(fn(a + (b - a) * i / (n - 1))); return r }
 
   var LBL = {
-    en: { data: 'DATA · WHAT COMES IN', logic: 'LOGIC · HOW IT THINKS', actions: 'ACTIONS · WHAT IT DOES', biz: 'YOUR BUSINESS', you: 'YOU', head: 'How it works', hint: 'Click anything to see what it is · drag to turn · Shift + drag or two fingers to move · pinch or Ctrl + scroll to zoom', zin: 'Zoom in', zout: 'Zoom out', fit: 'Show everything', close: 'Close', run: 'AUTOMATION' },
-    de: { data: 'DATEN · WAS REINKOMMT', logic: 'LOGIK · WIE ES DENKT', actions: 'AKTIONEN · WAS ES TUT', biz: 'DEIN BETRIEB', you: 'DU', head: 'So funktioniert es', hint: 'Klick auf alles, um zu sehen, was es ist · ziehen zum Drehen · Umschalt + ziehen oder zwei Finger zum Verschieben · zwei Finger oder Strg + Scrollen zum Zoomen', zin: 'Vergrößern', zout: 'Verkleinern', fit: 'Alles zeigen', close: 'Schließen', run: 'AUTOMATISIERUNG' }
+    en: { data: 'DATA · WHAT COMES IN', logic: 'LOGIC · HOW IT THINKS', actions: 'ACTIONS · WHAT IT DOES', biz: 'YOUR BUSINESS', you: 'YOU', head: 'How it works', hintT: '↔ Swipe to turn · tap to explain', hint: 'Click anything to see what it is · drag to turn · Shift + drag or two fingers to move · pinch or Ctrl + scroll to zoom', zin: 'Zoom in', zout: 'Zoom out', fit: 'Show everything', close: 'Close', run: 'AUTOMATION' },
+    de: { data: 'DATEN · WAS REINKOMMT', logic: 'LOGIK · WIE ES DENKT', actions: 'AKTIONEN · WAS ES TUT', biz: 'DEIN BETRIEB', you: 'DU', head: 'So funktioniert es', hintT: '↔ Wischen zum Drehen · tippen zum Erklären', hint: 'Klick auf alles, um zu sehen, was es ist · ziehen zum Drehen · Umschalt + ziehen oder zwei Finger zum Verschieben · zwei Finger oder Strg + Scrollen zum Zoomen', zin: 'Vergrößern', zout: 'Verkleinern', fit: 'Alles zeigen', close: 'Schließen', run: 'AUTOMATISIERUNG' }
   };
 
   function build(sec, M) {
@@ -154,7 +154,7 @@
       M.steps.map(function (s, i) { return '<li data-go="' + (i + 1) + '"><span class="k">0' + (i + 1) + '</span><b>' + esc(T(s.t)) + '</b><p>' + esc(T(s.p)) + '</p></li>' }).join('') +
       '</ol></div><div class="os"><svg viewBox="80 120 1440 860" preserveAspectRatio="xMidYMid meet" role="img" aria-label="' + esc(T(M.aria) || L.head) + '"></svg>' +
       '<div class="zc"><button type="button" data-z="in" aria-label="' + L.zin + '">+</button><button type="button" data-z="out" aria-label="' + L.zout + '">−</button><button type="button" data-z="fit" aria-label="' + L.fit + '">⤢</button></div>' +
-      '<div class="hint">' + L.hint + '</div><div class="card" hidden><button type="button" class="x" aria-label="' + L.close + '">×</button><span class="kk"></span><b></b><p></p></div></div></div></div>';
+      '<div class="hint">' + (matchMedia('(pointer:coarse)').matches ? L.hintT : L.hint) + '</div><div class="card" hidden><button type="button" class="x" aria-label="' + L.close + '">×</button><span class="kk"></span><b></b><p></p></div></div></div></div>';
     var svg = sec.querySelector('svg'), O = {};
     M.objects.forEach(function (o) { if (!o.at) o.at = o.parts ? [o.parts[0][1], o.parts[0][2]] : [0, 0]; O[o.k] = o.c || [o.at[0] + (o.cx || .8), o.at[1] + (o.cy || .6)] });
     var order = M.objects.slice().sort(function (a, b) { return (a.at[0] + a.at[1]) - (b.at[0] + b.at[1]) }), delay = {};
@@ -335,7 +335,7 @@
       if (n === 1) {
         moved = Math.max(moved, Math.abs(dx) + Math.abs(dy)); if (moved <= 4) return;
         if (panMode) setVB([start.vb[0] - dx * kk, start.vb[1] - dy * kk, start.vb[2], start.vb[3]]);
-        else { cancelAnimationFrame(anim); turn(start.yaw + dx * .009, start.el + dy * .004) }
+        else { cancelAnimationFrame(anim); turn(start.yaw + dx * .009, e.pointerType === 'touch' ? start.el : start.el + dy * .004) }  // touch: sideways turns, up/down stays page scroll
       }
       else if (start.d) { moved = 99; zoomAt(m, start.d / pd(), [start.vb[0] - dx * kk, start.vb[1] - dy * kk, start.vb[2], start.vb[3]]) }
     });
