@@ -1,7 +1,7 @@
 // Small behaviour only: mobile menu, reveal on scroll, video play when visible, work list pane, toc highlight.
 (()=>{
 const d=document,RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
-// light / dark toggle. The first visit follows the system; the choice is only saved when the button is pressed.
+// light / dark toggle. The first visit is light; the choice is saved when the button is pressed.
 const tg=d.getElementById('tgl'),root=d.documentElement,mq=matchMedia('(prefers-color-scheme:dark)');
 const paint=()=>{const dk=root.getAttribute('data-theme')==='dark';
  if(tg){const l=dk?tg.dataset.toLight:tg.dataset.toDark;tg.setAttribute('aria-label',l);tg.title=l}
@@ -9,7 +9,7 @@ const paint=()=>{const dk=root.getAttribute('data-theme')==='dark';
 const setTheme=(t,save)=>{root.setAttribute('data-theme',t);if(save){try{localStorage.setItem('theme',t)}catch(e){}}paint()};
 if(tg)tg.addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark',true));
 let saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
-if(saved!=='dark'&&saved!=='light'&&mq.addEventListener)mq.addEventListener('change',e=>setTheme(e.matches?'dark':'light',false));
+// the site opens light (Licht, 23 Nov); it no longer follows the system theme
 paint();
 const mb=d.querySelector('.mbtn'),mn=d.querySelector('.mnu');
 if(mb&&mn){
